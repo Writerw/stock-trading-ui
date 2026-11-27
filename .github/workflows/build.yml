@@ -48,9 +48,24 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
-      - name: Upload APK
+      - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
         with:
           name: stock-app-release
           path: build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30
+
+      - name: Delete old release
+        run: gh release delete latest --yes 2>/dev/null || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release with APK
+        run: |
+          cp build/app/outputs/flutter-apk/app-release.apk stock-app.apk
+          gh release create latest stock-app.apk \
+            --title "Stock App - Latest Build" \
+            --notes "Direct APK download. Tap the link below to install on Android." \
+            --latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
