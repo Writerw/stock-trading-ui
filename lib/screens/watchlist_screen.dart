@@ -101,18 +101,18 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
           ),
           // layers + button
           Padding(
-            padding: const EdgeInsets.only(right: 14, left: 6),
+            padding: const EdgeInsets.only(right: 12, left: 2),
             child: SizedBox(
-              width: 38,
-              height: 38,
+              width: 36,
+              height: 36,
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
                   Container(
-                    width: 38,
-                    height: 38,
+                    width: 36,
+                    height: 36,
                     decoration: const BoxDecoration(color: AppTheme.layersBtn, shape: BoxShape.circle),
-                    child: const Icon(Icons.layers_outlined, color: AppTheme.blue, size: 21),
+                    child: const Icon(Icons.layers_outlined, color: AppTheme.blue, size: 20),
                   ),
                   Positioned(
                     right: 1,
@@ -139,7 +139,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
       onTap: () => setState(() => _selectedTab = i),
       behavior: HitTestBehavior.opaque,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: IntrinsicWidth(
           child: Column(
             children: [
@@ -250,10 +250,10 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
       children: [
         Container(width: 3, color: AppTheme.blue),
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
+            padding: EdgeInsets.zero,
             children: [
-              // Default (25) header
+              // Default (25) header — scrolls with the list (not a pinned box)
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
                 child: Row(
@@ -269,19 +269,15 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                     const Spacer(),
                     const Icon(Icons.add, size: 23, color: AppTheme.textPrimary),
                     const SizedBox(width: 18),
-                    const Icon(Icons.open_in_full, size: 18, color: AppTheme.textPrimary),
+                    const Icon(Icons.crop_free, size: 18, color: AppTheme.textPrimary),
                   ],
                 ),
               ),
               Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
-              Expanded(
-                child: ListView.separated(
-                  padding: EdgeInsets.zero,
-                  itemCount: dummyStocks.length,
-                  separatorBuilder: (_, __) => Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
-                  itemBuilder: (context, i) => StockTile(stock: dummyStocks[i]),
-                ),
-              ),
+              for (int i = 0; i < dummyStocks.length; i++) ...[
+                StockTile(stock: dummyStocks[i]),
+                Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
+              ],
             ],
           ),
         ),
