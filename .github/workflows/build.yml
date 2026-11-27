@@ -1,4 +1,4 @@
-name: Build APK
+name: Build APK & Web Preview
 
 on:
   push:
@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -32,14 +34,11 @@ jobs:
 
       - name: Generate platform files
         run: |
-          # Save our custom source files
           cp -r lib lib_backup
           cp pubspec.yaml pubspec_backup.yaml
 
-          # Generate full Flutter project structure (android/, etc.)
           flutter create --project-name stock_app --org com.practice .
 
-          # Restore our custom files over the generated defaults
           rm -rf lib
           cp -r lib_backup lib
           cp pubspec_backup.yaml pubspec.yaml
@@ -51,12 +50,21 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
+      - name: Build Web
+        run: flutter build web --release --base-href "/stock-trading-ui/"
+
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
         with:
           name: stock-app-release
           path: build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/web
 
       - name: Delete old release
         run: gh release delete latest --yes 2>/dev/null || true
