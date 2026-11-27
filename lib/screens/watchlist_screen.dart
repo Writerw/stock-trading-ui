@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../data/dummy_data.dart';
 import '../theme/app_theme.dart';
 import '../widgets/stock_tile.dart';
@@ -14,12 +15,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
   String _searchQuery = '';
   int _selectedTab = 0;
 
-  final List<String> _watchlistTabs = [
-    'Nifty 50',
-    'My Stocks',
-    'Indices',
-  ];
-
   List<Stock> get _filteredStocks {
     if (_searchQuery.isEmpty) return dummyStocks;
     return dummyStocks
@@ -32,98 +27,92 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme.background,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Title row
+            // ─── TITLE ROW: "Watchlist" + down chevron ───
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+              padding: const EdgeInsets.fromLTRB(16, 18, 16, 0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Watchlist',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600,
-                        ),
+                    style: GoogleFonts.roboto(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
                   ),
-                  const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: AppTheme.textSecondary,
-                    size: 28,
+                  const Spacer(),
+                  Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                    color: Colors.white.withOpacity(0.7),
+                    size: 30,
                   ),
                 ],
               ),
             ),
 
-            const SizedBox(height: 12),
+            const SizedBox(height: 14),
 
-            // Watchlist tabs row
+            // ─── TAB ROW: Nifty 50 | Nifty 50 (Group... | Major Indices 🔒 | [+] ───
             SizedBox(
-              height: 36,
+              height: 34,
               child: Row(
                 children: [
                   Expanded(
-                    child: ListView.builder(
+                    child: ListView(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.only(left: 16),
-                      itemCount: _watchlistTabs.length,
-                      itemBuilder: (context, index) {
-                        final isSelected = _selectedTab == index;
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _selectedTab = index;
-                            });
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(right: 20),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  _watchlistTabs[index],
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: isSelected
-                                        ? FontWeight.w500
-                                        : FontWeight.w400,
-                                    color: isSelected
-                                        ? AppTheme.blue
-                                        : AppTheme.textSecondary,
-                                  ),
-                                ),
-                                const SizedBox(height: 6),
-                                Container(
-                                  height: 2,
-                                  width: _watchlistTabs[index].length * 7.5,
-                                  color: isSelected
-                                      ? AppTheme.blue
-                                      : Colors.transparent,
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
+                      children: [
+                        _buildTab('Nifty 50', 0, false),
+                        _buildTab('Nifty 50 (Group...', 1, false),
+                        _buildTab('Major Indices', 2, true),
+                      ],
                     ),
                   ),
-                  // Add watchlist button
+                  // Layered circle add button (Kite style)
                   Padding(
-                    padding: const EdgeInsets.only(right: 12, bottom: 8),
-                    child: Container(
-                      width: 32,
-                      height: 32,
-                      decoration: BoxDecoration(
-                        color: AppTheme.card,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: const Icon(
-                        Icons.add,
-                        color: AppTheme.blue,
-                        size: 18,
+                    padding: const EdgeInsets.only(right: 14),
+                    child: SizedBox(
+                      width: 36,
+                      height: 36,
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF2A3A5C),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.layers_rounded,
+                              color: AppTheme.blue,
+                              size: 20,
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            child: Container(
+                              width: 14,
+                              height: 14,
+                              decoration: const BoxDecoration(
+                                color: AppTheme.blue,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 10,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -131,22 +120,32 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               ),
             ),
 
-            const Divider(height: 1),
+            const SizedBox(height: 10),
 
-            // Search bar with count and filter
+            // Thin divider below tabs
+            Container(
+              height: 0.5,
+              color: AppTheme.divider,
+            ),
+
+            // ─── SEARCH BAR: 🔍 Search & add | 25/250 | ⫦ filter ───
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 10, 16, 6),
+              padding: const EdgeInsets.fromLTRB(12, 10, 12, 6),
               child: Container(
-                height: 42,
+                height: 44,
                 decoration: BoxDecoration(
                   color: AppTheme.card,
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   children: [
-                    const SizedBox(width: 12),
-                    const Icon(Icons.search, color: AppTheme.textSecondary, size: 20),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 14),
+                    Icon(
+                      Icons.search_rounded,
+                      color: Colors.white.withOpacity(0.4),
+                      size: 22,
+                    ),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: TextField(
                         onChanged: (value) {
@@ -154,49 +153,70 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                             _searchQuery = value;
                           });
                         },
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 14),
+                        style: GoogleFonts.roboto(
+                          fontSize: 15,
+                          color: Colors.white,
+                        ),
                         decoration: InputDecoration(
                           hintText: 'Search & add',
-                          hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14),
+                          hintStyle: GoogleFonts.roboto(
+                            fontSize: 15,
+                            color: Colors.white.withOpacity(0.35),
+                          ),
                           border: InputBorder.none,
                           isDense: true,
-                          contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 11),
                         ),
                       ),
                     ),
                     Text(
                       '${_filteredStocks.length}/250',
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 12),
+                      style: GoogleFonts.roboto(
+                        fontSize: 13,
+                        color: Colors.white.withOpacity(0.35),
+                      ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 10),
                     Container(
                       width: 1,
-                      height: 20,
+                      height: 22,
                       color: AppTheme.divider,
                     ),
-                    const SizedBox(width: 8),
-                    const Icon(Icons.tune, color: AppTheme.textSecondary, size: 18),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 10),
+                    Icon(
+                      Icons.tune_rounded,
+                      color: Colors.white.withOpacity(0.4),
+                      size: 20,
+                    ),
+                    const SizedBox(width: 14),
                   ],
                 ),
               ),
             ),
 
-            // Stock list
+            const SizedBox(height: 2),
+
+            // ─── STOCK LIST ───
             Expanded(
               child: _filteredStocks.isEmpty
                   ? Center(
                       child: Text(
                         'No stocks found',
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: GoogleFonts.roboto(
+                          fontSize: 14,
+                          color: AppTheme.textSecondary,
+                        ),
                       ),
                     )
                   : ListView.separated(
+                      padding: EdgeInsets.zero,
                       itemCount: _filteredStocks.length,
-                      separatorBuilder: (context, index) => const Divider(
-                        height: 1,
+                      separatorBuilder: (context, index) => Divider(
+                        height: 0.5,
+                        thickness: 0.5,
                         indent: 16,
                         endIndent: 16,
+                        color: AppTheme.divider,
                       ),
                       itemBuilder: (context, index) {
                         final stock = _filteredStocks[index];
@@ -214,6 +234,58 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                         );
                       },
                     ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ─── Helper: build a single tab ───
+  Widget _buildTab(String label, int index, bool hasLock) {
+    final isSelected = _selectedTab == index;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedTab = index;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(right: 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  label,
+                  style: GoogleFonts.roboto(
+                    fontSize: 14,
+                    fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
+                    color: isSelected ? AppTheme.blue : AppTheme.textSecondary,
+                  ),
+                ),
+                if (hasLock) ...[
+                  const SizedBox(width: 4),
+                  Icon(
+                    Icons.lock_outline_rounded,
+                    size: 13,
+                    color: isSelected ? AppTheme.blue : AppTheme.textSecondary,
+                  ),
+                ],
+              ],
+            ),
+            const SizedBox(height: 8),
+            Container(
+              height: 2.5,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: isSelected ? AppTheme.blue : Colors.transparent,
+                borderRadius: BorderRadius.circular(2),
+              ),
             ),
           ],
         ),
