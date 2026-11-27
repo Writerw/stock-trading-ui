@@ -38,26 +38,26 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  static const Color _inactiveColor = AppTheme.textSecondary; // #44474F (JetKite onSurfaceVariant)
+  static const Color _inactiveColor = Color(0xFF424250); // exact grey from the Kite screenshot
 
-  // Builds a nav item using custom SVG icons (outline when inactive, filled when selected)
+  // Builds a nav item using the traced SVG icon: blue when selected, grey when not.
   BottomNavigationBarItem _navItem(String name, String label) {
     return BottomNavigationBarItem(
       icon: Padding(
         padding: const EdgeInsets.only(bottom: 3),
         child: SvgPicture.asset(
-          'assets/icons/${name}_outline.svg',
-          width: 25,
-          height: 25,
+          'assets/icons/$name.svg',
+          width: 28,
+          height: 28,
           colorFilter: const ColorFilter.mode(_inactiveColor, BlendMode.srcIn),
         ),
       ),
       activeIcon: Padding(
         padding: const EdgeInsets.only(bottom: 3),
         child: SvgPicture.asset(
-          'assets/icons/${name}_filled.svg',
-          width: 25,
-          height: 25,
+          'assets/icons/$name.svg',
+          width: 28,
+          height: 28,
           colorFilter: const ColorFilter.mode(AppTheme.blue, BlendMode.srcIn),
         ),
       ),
@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.white,
           elevation: 0,
           selectedItemColor: AppTheme.blue,
-          unselectedItemColor: AppTheme.textSecondary,
+          unselectedItemColor: _inactiveColor,
           selectedFontSize: 11,
           unselectedFontSize: 11,
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
