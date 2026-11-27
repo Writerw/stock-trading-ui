@@ -33,7 +33,7 @@ jobs:
           cp -r lib lib_backup
           cp pubspec.yaml pubspec_backup.yaml
 
-          flutter create --project-name stock_app --org com.practice .
+          flutter create --project-name stock_app --org com.practice --platforms=android .
 
           rm -rf lib
           cp -r lib_backup lib
