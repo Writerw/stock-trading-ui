@@ -28,6 +28,9 @@ class AppTheme {
   static const Color metaGrey = Color(0xFF9B9BAF);      // tags / company / list icons
   static const Color rowAltBg = Color(0xFFFAFAFB);      // privacy-mode strip
   static const Color avatarText = Color(0xFF9FC1F9);    // "DU" initials
+  static const Color chipPurpleBg = Color(0xFFEBE5F5);  // NRML product chip
+  static const Color chipPurpleText = Color(0xFF673AB7);
+  static const Color pillGreenBg = Color(0xFFE9F5E9);   // +% P&L pill
 
   static ThemeData get lightTheme {
     return ThemeData(

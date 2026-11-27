@@ -18,6 +18,8 @@ class KiteTabs extends StatelessWidget {
   final int selected;
   final ValueChanged<int> onSelect;
   final Widget? trailing; // e.g. the layers (+) button on the watchlist
+  final bool centered; // center a small set of tabs (e.g. Portfolio)
+  final double tabPadding;
 
   const KiteTabs({
     super.key,
@@ -25,14 +27,21 @@ class KiteTabs extends StatelessWidget {
     required this.selected,
     required this.onSelect,
     this.trailing,
+    this.centered = false,
+    this.tabPadding = 12,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppTheme.topSection,
-      height: 46,
-      child: Row(
+    final Widget inner;
+    if (centered) {
+      inner = Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [for (int i = 0; i < tabs.length; i++) _tab(tabs[i], i)],
+      );
+    } else {
+      inner = Row(
         children: [
           Expanded(
             child: SingleChildScrollView(
@@ -47,8 +56,9 @@ class KiteTabs extends StatelessWidget {
           ),
           if (trailing != null) trailing!,
         ],
-      ),
-    );
+      );
+    }
+    return Container(color: AppTheme.topSection, height: 46, child: inner);
   }
 
   Widget _tab(KiteTab t, int i) {
@@ -57,7 +67,7 @@ class KiteTabs extends StatelessWidget {
       onTap: () => onSelect(i),
       behavior: HitTestBehavior.opaque,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
+        padding: EdgeInsets.symmetric(horizontal: tabPadding),
         child: IntrinsicWidth(
           child: Column(
             children: [
