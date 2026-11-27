@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'theme/app_theme.dart';
 import 'screens/watchlist_screen.dart';
 
@@ -36,6 +37,33 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+
+  static const Color _inactiveColor = Color(0xFF7B7B7B);
+
+  // Builds a nav item using custom SVG icons (outline when inactive, filled when selected)
+  BottomNavigationBarItem _navItem(String name, String label) {
+    return BottomNavigationBarItem(
+      icon: Padding(
+        padding: const EdgeInsets.only(bottom: 3),
+        child: SvgPicture.asset(
+          'assets/icons/${name}_outline.svg',
+          width: 25,
+          height: 25,
+          colorFilter: const ColorFilter.mode(_inactiveColor, BlendMode.srcIn),
+        ),
+      ),
+      activeIcon: Padding(
+        padding: const EdgeInsets.only(bottom: 3),
+        child: SvgPicture.asset(
+          'assets/icons/${name}_filled.svg',
+          width: 25,
+          height: 25,
+          colorFilter: const ColorFilter.mode(AppTheme.blue, BlendMode.srcIn),
+        ),
+      ),
+      label: label,
+    );
+  }
 
   final List<Widget> _screens = [
     const WatchlistScreen(),
@@ -74,67 +102,12 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedFontSize: 11,
           unselectedFontSize: 11,
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
-          items: const [
-            // Watchlist — bookmark/flag icon (Kite uses a bookmark ribbon)
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Icon(Icons.bookmark_outline, size: 26),
-              ),
-              activeIcon: Padding(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Icon(Icons.bookmark, size: 26),
-              ),
-              label: 'Watchlist',
-            ),
-            // Orders — book/notebook icon
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Icon(Icons.menu_book_outlined, size: 26),
-              ),
-              activeIcon: Padding(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Icon(Icons.menu_book, size: 26),
-              ),
-              label: 'Orders',
-            ),
-            // Portfolio — briefcase/suitcase icon
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Icon(Icons.work_outline, size: 26),
-              ),
-              activeIcon: Padding(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Icon(Icons.work, size: 26),
-              ),
-              label: 'Portfolio',
-            ),
-            // IPO & Bids — gavel/auction icon
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Icon(Icons.gavel_outlined, size: 26),
-              ),
-              activeIcon: Padding(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Icon(Icons.gavel, size: 26),
-              ),
-              label: 'IPO & Bids',
-            ),
-            // DEMOUSER — person icon
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Icon(Icons.person_outline, size: 26),
-              ),
-              activeIcon: Padding(
-                padding: EdgeInsets.only(bottom: 3),
-                child: Icon(Icons.person, size: 26),
-              ),
-              label: 'DEMOUSER',
-            ),
+          items: [
+            _navItem('watchlist', 'Watchlist'),
+            _navItem('orders', 'Orders'),
+            _navItem('portfolio', 'Portfolio'),
+            _navItem('ipo', 'IPO & Bids'),
+            _navItem('profile', 'DEMOUSER'),
           ],
         ),
       ),
