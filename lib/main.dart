@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'theme/app_theme.dart';
 import 'screens/watchlist_screen.dart';
+import 'screens/orders_screen.dart';
+import 'screens/ipo_screen.dart';
+import 'screens/account_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -67,10 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _screens = [
     const WatchlistScreen(),
-    Center(child: Text('Orders', style: TextStyle(color: AppTheme.textPrimary, fontSize: 18))),
+    const OrdersScreen(),
+    // Portfolio not built yet — no screenshot supplied
     Center(child: Text('Portfolio', style: TextStyle(color: AppTheme.textPrimary, fontSize: 18))),
-    Center(child: Text('IPO & Bids', style: TextStyle(color: AppTheme.textPrimary, fontSize: 18))),
-    Center(child: Text('Profile', style: TextStyle(color: AppTheme.textPrimary, fontSize: 18))),
+    const IpoScreen(),
+    const AccountScreen(),
   ];
 
   @override

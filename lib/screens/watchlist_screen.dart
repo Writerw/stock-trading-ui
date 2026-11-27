@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../data/dummy_data.dart';
 import '../theme/app_theme.dart';
+import '../widgets/kite_app_bar.dart';
+import '../widgets/kite_tabs.dart';
 import '../widgets/stock_tile.dart';
-
-/// Bumped on every deploy so you can confirm the loaded build.
-/// TODO: remove this version label once the UI is final.
-const String kBuildVersion = 'v1';
 
 class WatchlistScreen extends StatefulWidget {
   const WatchlistScreen({super.key});
@@ -17,7 +15,6 @@ class WatchlistScreen extends StatefulWidget {
 
 class _WatchlistScreenState extends State<WatchlistScreen> {
   int _selectedTab = 0;
-  final List<String> _tabs = const ['Nifty 50', 'Nifty 50 (Group...', 'Major Indices'];
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +25,17 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _titleRow(),
-            _tabRow(),
+            const KiteAppBar(title: 'Watchlist'),
+            KiteTabs(
+              tabs: const [
+                KiteTab('Nifty 50'),
+                KiteTab('Nifty 50 (Group...'),
+                KiteTab('Major Indices', lock: true),
+              ],
+              selected: _selectedTab,
+              onSelect: (i) => setState(() => _selectedTab = i),
+              trailing: _layersButton(),
+            ),
             _searchBand(),
             _newGroupRow(),
             Expanded(child: _listWithAccent()),
@@ -39,148 +45,41 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
     );
   }
 
-  // ─── 1. Title: "Watchlist"  [Exit demo]            v ───
-  Widget _titleRow() {
+  Widget _layersButton() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 10, 14, 10),
-      child: Row(
-        children: [
-          Text(
-            'Watchlist',
-            style: GoogleFonts.inter(
-              fontSize: 25,
-              fontWeight: FontWeight.w700,
-              color: AppTheme.textPrimary,
-            ),
-          ),
-          const SizedBox(width: 12),
-          // yellow "Exit demo" pill
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 7),
-            decoration: BoxDecoration(
-              color: AppTheme.exitDemo,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(Icons.logout, size: 16, color: AppTheme.textPrimary),
-                const SizedBox(width: 6),
-                Text(
-                  'Exit demo $kBuildVersion',
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppTheme.textPrimary,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const Spacer(),
-          const Icon(Icons.keyboard_arrow_down, size: 28, color: AppTheme.textPrimary),
-        ],
-      ),
-    );
-  }
-
-  // ─── 2. Tabs (grey band) + layers button ───
-  Widget _tabRow() {
-    return Container(
-      color: AppTheme.topSection,
-      height: 46,
-      child: Row(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  for (int i = 0; i < _tabs.length; i++)
-                    _tab(_tabs[i], i, hasLock: i == 2),
-                ],
-              ),
-            ),
-          ),
-          // layers + button
-          Padding(
-            padding: const EdgeInsets.only(right: 12, left: 2),
-            child: SizedBox(
+      padding: const EdgeInsets.only(right: 12, left: 2),
+      child: SizedBox(
+        width: 36,
+        height: 36,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
               width: 36,
               height: 36,
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Container(
-                    width: 36,
-                    height: 36,
-                    decoration: const BoxDecoration(color: AppTheme.layersBtn, shape: BoxShape.circle),
-                    child: const Icon(Icons.layers_outlined, color: AppTheme.blue, size: 20),
-                  ),
-                  Positioned(
-                    right: 1,
-                    top: 1,
-                    child: Container(
-                      width: 15,
-                      height: 15,
-                      decoration: const BoxDecoration(color: AppTheme.blue, shape: BoxShape.circle),
-                      child: const Icon(Icons.add, color: Colors.white, size: 11),
-                    ),
-                  ),
-                ],
+              decoration: const BoxDecoration(
+                  color: AppTheme.layersBtn, shape: BoxShape.circle),
+              child: const Icon(Icons.layers_outlined,
+                  color: AppTheme.blue, size: 20),
+            ),
+            Positioned(
+              right: 1,
+              top: 1,
+              child: Container(
+                width: 15,
+                height: 15,
+                decoration:
+                    const BoxDecoration(color: AppTheme.blue, shape: BoxShape.circle),
+                child: const Icon(Icons.add, color: Colors.white, size: 11),
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _tab(String label, int i, {bool hasLock = false}) {
-    final sel = _selectedTab == i;
-    return GestureDetector(
-      onTap: () => setState(() => _selectedTab = i),
-      behavior: HitTestBehavior.opaque,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: IntrinsicWidth(
-          child: Column(
-            children: [
-              Expanded(
-                child: Center(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        label,
-                        style: GoogleFonts.inter(
-                          fontSize: 15,
-                          fontWeight: sel ? FontWeight.w600 : FontWeight.w400,
-                          color: sel ? AppTheme.blue : AppTheme.textPrimary,
-                        ),
-                      ),
-                      if (hasLock) ...[
-                        const SizedBox(width: 5),
-                        const Icon(Icons.lock_outline, size: 14, color: AppTheme.textPrimary),
-                      ],
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                height: 2.5,
-                width: double.infinity,
-                color: sel ? AppTheme.blue : Colors.transparent,
-              ),
-            ],
-          ),
+          ],
         ),
       ),
     );
   }
 
-  // ─── 3. Search card floating over grey band ───
+  // Search card floating over the grey band
   Widget _searchBand() {
     return Container(
       color: AppTheme.topSection,
@@ -203,12 +102,14 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               Expanded(
                 child: Text(
                   'Search & add',
-                  style: GoogleFonts.inter(fontSize: 15.5, color: AppTheme.searchHint),
+                  style: GoogleFonts.inter(
+                      fontSize: 15.5, color: AppTheme.searchHint),
                 ),
               ),
               Text(
                 '25/250',
-                style: GoogleFonts.inter(fontSize: 14.5, color: AppTheme.searchHint),
+                style: GoogleFonts.inter(
+                    fontSize: 14.5, color: AppTheme.searchHint),
               ),
               const SizedBox(width: 12),
               Container(width: 1, height: 24, color: AppTheme.topSection),
@@ -217,7 +118,8 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                 quarterTurns: 1,
                 child: IconButton(
                   onPressed: () {},
-                  icon: const Icon(Icons.tune, color: AppTheme.textPrimary, size: 22),
+                  icon: const Icon(Icons.tune,
+                      color: AppTheme.textPrimary, size: 22),
                   splashRadius: 20,
                 ),
               ),
@@ -229,7 +131,6 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
     );
   }
 
-  // ─── 4. "+ New group" (right-aligned, blue) ───
   Widget _newGroupRow() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 10, 18, 10),
@@ -240,14 +141,15 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
           const SizedBox(width: 4),
           Text(
             'New group',
-            style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w500, color: AppTheme.blue),
+            style: GoogleFonts.inter(
+                fontSize: 16, fontWeight: FontWeight.w500, color: AppTheme.blue),
           ),
         ],
       ),
     );
   }
 
-  // ─── 5+6. Blue left accent + Default header + list ───
+  // Blue left accent + Default header + rows, all in one scroll
   Widget _listWithAccent() {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -257,18 +159,23 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              // Default (25) header — scrolls with the list (not a pinned box)
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
                 child: Row(
                   children: [
                     Text(
                       'Default ',
-                      style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                      style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: AppTheme.textPrimary),
                     ),
                     Text(
                       '(25)',
-                      style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w500, color: AppTheme.textSecondary),
+                      style: GoogleFonts.inter(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: AppTheme.textSecondary),
                     ),
                     const Spacer(),
                     const Icon(Icons.add, size: 23, color: AppTheme.textPrimary),
@@ -277,10 +184,10 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   ],
                 ),
               ),
-              Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
+              const Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
               for (int i = 0; i < dummyStocks.length; i++) ...[
                 StockTile(stock: dummyStocks[i]),
-                Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
+                const Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
               ],
             ],
           ),
