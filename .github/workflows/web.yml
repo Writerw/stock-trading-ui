@@ -1,4 +1,4 @@
-name: Web Preview
+name: Web Preview (Cloudflare)
 
 on:
   push:
@@ -6,9 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: read
 
 jobs:
   web:
@@ -41,11 +39,20 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build Web
-        run: flutter build web --release --base-href "/stock-trading-ui/"
+      - name: Build Web (root base-href for Cloudflare)
+        run: flutter build web --release --base-href "/"
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Ensure Cloudflare Pages project exists
+        uses: cloudflare/wrangler-action@v3
+        continue-on-error: true
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/web
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: d07a2e69bd77a2f9455d4607c799af07
+          command: pages project create stock-trading-ui --production-branch=main
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: d07a2e69bd77a2f9455d4607c799af07
+          command: pages deploy build/web --project-name=stock-trading-ui --branch=main --commit-dirty=true
