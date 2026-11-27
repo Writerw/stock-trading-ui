@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../data/dummy_data.dart';
 import '../theme/app_theme.dart';
 
@@ -6,53 +7,65 @@ class StockTile extends StatelessWidget {
   final Stock stock;
   final VoidCallback? onTap;
 
-  const StockTile({
-    super.key,
-    required this.stock,
-    this.onTap,
-  });
+  const StockTile({super.key, required this.stock, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    final changeColor = stock.isPositive ? AppTheme.green : AppTheme.red;
-    final changePrefix = stock.isPositive ? '+' : '';
+    final priceColor = stock.isPositive ? AppTheme.green : AppTheme.red;
 
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: const EdgeInsets.fromLTRB(16, 13, 16, 13),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Left: symbol + exchange
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     stock.symbol,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: GoogleFonts.roboto(
+                      fontSize: 15.5,
+                      fontWeight: FontWeight.w400,
+                      color: AppTheme.textPrimary,
+                    ),
                   ),
-                  const SizedBox(height: 2),
+                  const SizedBox(height: 5),
                   Text(
-                    'NSE',
-                    style: Theme.of(context).textTheme.bodySmall,
+                    stock.exchange,
+                    style: GoogleFonts.roboto(
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.4,
+                      color: AppTheme.indicesGrey,
+                    ),
                   ),
                 ],
               ),
             ),
+            // Right: colored LTP + neutral-dark change
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  stock.ltp.toStringAsFixed(2),
-                  style: Theme.of(context).textTheme.titleMedium,
+                  stock.ltpDisplay,
+                  style: GoogleFonts.roboto(
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w400,
+                    color: priceColor,
+                  ),
                 ),
-                const SizedBox(height: 2),
+                const SizedBox(height: 5),
                 Text(
-                  '$changePrefix${stock.change.toStringAsFixed(2)}%',
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: changeColor,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  stock.changeDisplay,
+                  style: GoogleFonts.roboto(
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w400,
+                    color: AppTheme.textPrimary,
+                  ),
                 ),
               ],
             ),

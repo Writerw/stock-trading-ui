@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // ─── Light theme colors (ported from JetKite design system) ───
-  static const Color background = Color(0xFFF6FEFF);   // md_theme_light_background
+  // ─── Colors sampled directly from the Kite watchlist screenshot ───
+  static const Color background = Color(0xFFFFFFFF);   // white screen
   static const Color surface = Color(0xFFFFFFFF);      // white surface / search card
   static const Color card = Color(0xFFFFFFFF);
-  static const Color divider = Color(0xFFE1E2EC);      // surfaceVariant
-  static const Color outline = Color(0xFF74777F);      // md_theme_light_outline
-  static const Color topSection = Color(0xFFECECEC);   // colorTopSectionBackgroundLight
-  static const Color textPrimary = Color(0xFF001F24);  // onBackground
-  static const Color textSecondary = Color(0xFF44474F); // onSurfaceVariant
-  static const Color searchHint = Color(0xFF8A9499);   // readable placeholder grey
-  static const Color blue = Color(0xFF4184F3);         // md_theme_light_primary
-  static const Color green = Color(0xFF4D9B59);        // colorGreen
-  static const Color red = Color(0xFFE87477);          // colorRed
+  static const Color divider = Color(0xFFF0F0F2);      // faint row divider
+  static const Color outline = Color(0xFF74777F);
+  static const Color topSection = Color(0xFFEBECED);   // grey band behind tabs/search
+  static const Color textPrimary = Color(0xFF424250);  // all dark text
+  static const Color textSecondary = Color(0xFF9A9AA6); // secondary grey
+  static const Color indicesGrey = Color(0xFFB8B8C6);  // "INDICES" label
+  static const Color searchHint = Color(0xFF9A9AA6);   // placeholder grey
+  static const Color blue = Color(0xFF4184F3);         // tabs / links / selected
+  static const Color green = Color(0xFF4CAF50);         // up price
+  static const Color red = Color(0xFFDF514C);           // down price
+  static const Color exitDemo = Color(0xFFF5BD00);      // yellow pill
+  static const Color layersBtn = Color(0xFFD6DFED);     // layers button bg
 
   static ThemeData get lightTheme {
     return ThemeData(
