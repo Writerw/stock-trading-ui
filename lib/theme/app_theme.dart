@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const Color background = Color(0xFF1A1A1A);
-  static const Color card = Color(0xFF242424);
-  static const Color divider = Color(0xFF2A2A2A);
-  static const Color textPrimary = Colors.white;
+  // ─── Light / White theme colors (Kite style) ───
+  static const Color background = Color(0xFFFFFFFF);
+  static const Color card = Color(0xFFF5F5F5);
+  static const Color divider = Color(0xFFE8E8E8);
+  static const Color textPrimary = Color(0xFF1A1A1A);
   static const Color textSecondary = Color(0xFF9E9E9E);
   static const Color blue = Color(0xFF2D77FF);
   static const Color green = Color(0xFF29A745);
   static const Color red = Color(0xFFF6465D);
 
-  static ThemeData get darkTheme {
+  static ThemeData get lightTheme {
     return ThemeData(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       primaryColor: blue,
       scaffoldBackgroundColor: background,
       cardColor: card,
@@ -46,7 +47,7 @@ class AppTheme {
         selectedItemColor: blue,
         unselectedItemColor: textSecondary,
       ),
-      colorScheme: const ColorScheme.dark(
+      colorScheme: const ColorScheme.light(
         primary: blue,
         surface: card,
       ),

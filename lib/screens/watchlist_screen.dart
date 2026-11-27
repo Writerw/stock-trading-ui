@@ -43,13 +43,13 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                     style: GoogleFonts.roboto(
                       fontSize: 26,
                       fontWeight: FontWeight.w700,
-                      color: Colors.white,
+                      color: AppTheme.textPrimary,
                     ),
                   ),
                   const Spacer(),
                   Icon(
                     Icons.keyboard_arrow_down_rounded,
-                    color: Colors.white.withOpacity(0.7),
+                    color: AppTheme.textPrimary.withOpacity(0.7),
                     size: 30,
                   ),
                 ],
@@ -86,7 +86,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                             width: 36,
                             height: 36,
                             decoration: BoxDecoration(
-                              color: const Color(0xFF2A3A5C),
+                              color: const Color(0xFFE6EEFF),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
@@ -142,7 +142,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                     const SizedBox(width: 14),
                     Icon(
                       Icons.search_rounded,
-                      color: Colors.white.withOpacity(0.4),
+                      color: AppTheme.textSecondary,
                       size: 22,
                     ),
                     const SizedBox(width: 10),
@@ -155,13 +155,13 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                         },
                         style: GoogleFonts.roboto(
                           fontSize: 15,
-                          color: Colors.white,
+                          color: AppTheme.textPrimary,
                         ),
                         decoration: InputDecoration(
                           hintText: 'Search & add',
                           hintStyle: GoogleFonts.roboto(
                             fontSize: 15,
-                            color: Colors.white.withOpacity(0.35),
+                            color: AppTheme.textSecondary,
                           ),
                           border: InputBorder.none,
                           isDense: true,
@@ -173,7 +173,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                       '${_filteredStocks.length}/250',
                       style: GoogleFonts.roboto(
                         fontSize: 13,
-                        color: Colors.white.withOpacity(0.35),
+                        color: AppTheme.textSecondary,
                       ),
                     ),
                     const SizedBox(width: 10),
@@ -185,7 +185,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                     const SizedBox(width: 10),
                     Icon(
                       Icons.tune_rounded,
-                      color: Colors.white.withOpacity(0.4),
+                      color: AppTheme.textSecondary,
                       size: 20,
                     ),
                     const SizedBox(width: 14),
@@ -227,7 +227,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                               SnackBar(
                                 content: Text('${stock.symbol} — ₹${stock.ltp}'),
                                 duration: const Duration(seconds: 1),
-                                backgroundColor: AppTheme.card,
+                                backgroundColor: AppTheme.textPrimary,
                               ),
                             );
                           },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'theme/app_theme.dart';
 import 'screens/watchlist_screen.dart';
 
@@ -11,10 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // White status bar for light theme
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ));
+
     return MaterialApp(
       title: 'Stock Trading App',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
+      theme: AppTheme.lightTheme,
       home: const HomeScreen(),
     );
   }
@@ -32,46 +39,104 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _screens = [
     const WatchlistScreen(),
-    const Center(child: Text('Portfolio', style: TextStyle(color: Colors.white))),
-    const Center(child: Text('Orders', style: TextStyle(color: Colors.white))),
-    const Center(child: Text('Funds', style: TextStyle(color: Colors.white))),
+    Center(child: Text('Orders', style: TextStyle(color: AppTheme.textPrimary, fontSize: 18))),
+    Center(child: Text('Portfolio', style: TextStyle(color: AppTheme.textPrimary, fontSize: 18))),
+    Center(child: Text('IPO & Bids', style: TextStyle(color: AppTheme.textPrimary, fontSize: 18))),
+    Center(child: Text('Profile', style: TextStyle(color: AppTheme.textPrimary, fontSize: 18))),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFF1A1A1A),
-        selectedItemColor: const Color(0xFF2D77FF),
-        unselectedItemColor: const Color(0xFF9E9E9E),
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.show_chart),
-            label: 'Watchlist',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            top: BorderSide(
+              color: AppTheme.divider,
+              width: 0.5,
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.pie_chart_outline),
-            label: 'Portfolio',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_long_outlined),
-            label: 'Orders',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance_wallet_outlined),
-            label: 'Funds',
-          ),
-        ],
+        ),
+        child: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          selectedItemColor: AppTheme.blue,
+          unselectedItemColor: const Color(0xFF7B7B7B),
+          selectedFontSize: 11,
+          unselectedFontSize: 11,
+          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
+          items: const [
+            // Watchlist — bookmark/flag icon (Kite uses a bookmark ribbon)
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(bottom: 3),
+                child: Icon(Icons.bookmark_outline, size: 26),
+              ),
+              activeIcon: Padding(
+                padding: EdgeInsets.only(bottom: 3),
+                child: Icon(Icons.bookmark, size: 26),
+              ),
+              label: 'Watchlist',
+            ),
+            // Orders — book/notebook icon
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(bottom: 3),
+                child: Icon(Icons.menu_book_outlined, size: 26),
+              ),
+              activeIcon: Padding(
+                padding: EdgeInsets.only(bottom: 3),
+                child: Icon(Icons.menu_book, size: 26),
+              ),
+              label: 'Orders',
+            ),
+            // Portfolio — briefcase/suitcase icon
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(bottom: 3),
+                child: Icon(Icons.work_outline, size: 26),
+              ),
+              activeIcon: Padding(
+                padding: EdgeInsets.only(bottom: 3),
+                child: Icon(Icons.work, size: 26),
+              ),
+              label: 'Portfolio',
+            ),
+            // IPO & Bids — gavel/auction icon
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(bottom: 3),
+                child: Icon(Icons.gavel_outlined, size: 26),
+              ),
+              activeIcon: Padding(
+                padding: EdgeInsets.only(bottom: 3),
+                child: Icon(Icons.gavel, size: 26),
+              ),
+              label: 'IPO & Bids',
+            ),
+            // DEMOUSER — person icon
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(bottom: 3),
+                child: Icon(Icons.person_outline, size: 26),
+              ),
+              activeIcon: Padding(
+                padding: EdgeInsets.only(bottom: 3),
+                child: Icon(Icons.person, size: 26),
+              ),
+              label: 'DEMOUSER',
+            ),
+          ],
+        ),
       ),
     );
   }
