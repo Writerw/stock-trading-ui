@@ -88,11 +88,15 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
       child: Row(
         children: [
           Expanded(
-            child: ListView.builder(
+            child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.zero,
-              itemCount: _tabs.length,
-              itemBuilder: (context, i) => _tab(_tabs[i], i, hasLock: i == 2),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  for (int i = 0; i < _tabs.length; i++)
+                    _tab(_tabs[i], i, hasLock: i == 2),
+                ],
+              ),
             ),
           ),
           // layers + button
@@ -133,37 +137,40 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
     final sel = _selectedTab == i;
     return GestureDetector(
       onTap: () => setState(() => _selectedTab = i),
-      child: Container(
-        color: AppTheme.topSection,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Expanded(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    label,
-                    style: GoogleFonts.roboto(
-                      fontSize: 15,
-                      fontWeight: sel ? FontWeight.w600 : FontWeight.w400,
-                      color: sel ? AppTheme.blue : AppTheme.textPrimary,
-                    ),
+      behavior: HitTestBehavior.opaque,
+      child: IntrinsicWidth(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              Expanded(
+                child: Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        label,
+                        style: GoogleFonts.roboto(
+                          fontSize: 15,
+                          fontWeight: sel ? FontWeight.w600 : FontWeight.w400,
+                          color: sel ? AppTheme.blue : AppTheme.textPrimary,
+                        ),
+                      ),
+                      if (hasLock) ...[
+                        const SizedBox(width: 5),
+                        const Icon(Icons.lock_outline, size: 14, color: AppTheme.textPrimary),
+                      ],
+                    ],
                   ),
-                  if (hasLock) ...[
-                    const SizedBox(width: 5),
-                    const Icon(Icons.lock_outline, size: 14, color: AppTheme.textPrimary),
-                  ],
-                ],
+                ),
               ),
-            ),
-            Container(
-              height: 2.5,
-              width: double.infinity,
-              color: sel ? AppTheme.blue : Colors.transparent,
-            ),
-          ],
+              Container(
+                height: 2.5,
+                width: double.infinity,
+                color: sel ? AppTheme.blue : Colors.transparent,
+              ),
+            ],
+          ),
         ),
       ),
     );
