@@ -1,4 +1,4 @@
-name: Build APK & Web Preview
+name: Web Preview
 
 on:
   push:
@@ -11,19 +11,13 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  web:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Java 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -47,36 +41,11 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --release
-
       - name: Build Web
         run: flutter build web --release --base-href "/stock-trading-ui/"
-
-      - name: Upload APK as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: stock-app-release
-          path: build/app/outputs/flutter-apk/app-release.apk
-          retention-days: 30
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build/web
-
-      - name: Delete old release
-        run: gh release delete latest --yes 2>/dev/null || true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create release with APK
-        run: |
-          cp build/app/outputs/flutter-apk/app-release.apk stock-app.apk
-          gh release create latest stock-app.apk \
-            --title "Stock App - Latest Build" \
-            --notes "Direct APK download. Tap the link below to install on Android." \
-            --latest
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
