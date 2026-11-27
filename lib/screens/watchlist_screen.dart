@@ -167,7 +167,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                       'Default ',
                       style: GoogleFonts.inter(
                           fontSize: 15,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                           color: AppTheme.textPrimary),
                     ),
                     Text(

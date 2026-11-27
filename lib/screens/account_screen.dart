@@ -59,7 +59,7 @@ class AccountScreen extends StatelessWidget {
                       'Account',
                       style: GoogleFonts.inter(
                           fontSize: 17,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                           color: AppTheme.textPrimary),
                     ),
                   ),
@@ -139,7 +139,7 @@ class AccountScreen extends StatelessWidget {
                     'Privacy mode',
                     style: GoogleFonts.inter(
                         fontSize: 17,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                         color: AppTheme.textPrimary),
                   ),
                   const Spacer(),

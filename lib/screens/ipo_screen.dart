@@ -136,7 +136,7 @@ class _IpoScreenState extends State<IpoScreen> {
                   'SME',
                   style: GoogleFonts.inter(
                       fontSize: 12.5,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       color: AppTheme.blue),
                 ),
               ],
@@ -164,7 +164,7 @@ class _IpoScreenState extends State<IpoScreen> {
                     'CLOSED',
                     style: GoogleFonts.inter(
                         fontSize: 13.5,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                         color: AppTheme.textPrimary),
                   ),
                 ),

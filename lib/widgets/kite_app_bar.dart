@@ -23,7 +23,7 @@ class KiteAppBar extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.inter(
                 fontSize: 25,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w600,
                 color: AppTheme.textPrimary,
               ),
             ),
@@ -44,7 +44,7 @@ class KiteAppBar extends StatelessWidget {
                   'Exit demo $kBuildVersion',
                   style: GoogleFonts.inter(
                     fontSize: 14,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
                     color: AppTheme.textPrimary,
                   ),
                 ),

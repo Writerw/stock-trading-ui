@@ -52,6 +52,11 @@ jobs:
             Cache-Control: no-cache, max-age=0, must-revalidate
           EOF
 
+      # Unregister any lingering old service worker so stale builds can't be served
+      - name: Inject service-worker killer
+        run: |
+          sed -i 's#</body>#<script>if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){var had=false;rs.forEach(function(r){had=true;r.unregister();});if(had){location.reload();}});}</script></body>#' build/web/index.html
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:

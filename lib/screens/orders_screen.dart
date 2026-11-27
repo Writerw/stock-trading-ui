@@ -97,7 +97,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
       child: Text(
         text,
         style: GoogleFonts.inter(
-            fontSize: 12.5, fontWeight: FontWeight.w600, color: fg),
+            fontSize: 12.5, fontWeight: FontWeight.w500, color: fg),
       ),
     );
   }

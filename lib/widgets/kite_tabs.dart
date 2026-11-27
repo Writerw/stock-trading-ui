@@ -70,7 +70,7 @@ class KiteTabs extends StatelessWidget {
                         t.label,
                         style: GoogleFonts.inter(
                           fontSize: 15,
-                          fontWeight: sel ? FontWeight.w600 : FontWeight.w400,
+                          fontWeight: sel ? FontWeight.w500 : FontWeight.w400,
                           color: sel ? AppTheme.blue : AppTheme.textPrimary,
                         ),
                       ),
@@ -111,7 +111,7 @@ class KiteTabs extends StatelessWidget {
         '$n',
         style: GoogleFonts.inter(
           fontSize: 11.5,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
           color: Colors.white,
         ),
       ),
