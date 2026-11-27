@@ -43,7 +43,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
         children: [
           Text(
             'Watchlist',
-            style: GoogleFonts.roboto(
+            style: GoogleFonts.inter(
               fontSize: 25,
               fontWeight: FontWeight.w700,
               color: AppTheme.textPrimary,
@@ -64,7 +64,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                 const SizedBox(width: 6),
                 Text(
                   'Exit demo',
-                  style: GoogleFonts.roboto(
+                  style: GoogleFonts.inter(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: AppTheme.textPrimary,
@@ -74,7 +74,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
             ),
           ),
           const Spacer(),
-          const Icon(Icons.keyboard_arrow_down_rounded, size: 28, color: AppTheme.textPrimary),
+          const Icon(Icons.keyboard_arrow_down, size: 28, color: AppTheme.textPrimary),
         ],
       ),
     );
@@ -138,9 +138,9 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
     return GestureDetector(
       onTap: () => setState(() => _selectedTab = i),
       behavior: HitTestBehavior.opaque,
-      child: IntrinsicWidth(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: IntrinsicWidth(
           child: Column(
             children: [
               Expanded(
@@ -150,7 +150,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                     children: [
                       Text(
                         label,
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.inter(
                           fontSize: 15,
                           fontWeight: sel ? FontWeight.w600 : FontWeight.w400,
                           color: sel ? AppTheme.blue : AppTheme.textPrimary,
@@ -199,12 +199,12 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               Expanded(
                 child: Text(
                   'Search & add',
-                  style: GoogleFonts.roboto(fontSize: 15.5, color: AppTheme.searchHint),
+                  style: GoogleFonts.inter(fontSize: 15.5, color: AppTheme.searchHint),
                 ),
               ),
               Text(
                 '25/250',
-                style: GoogleFonts.roboto(fontSize: 14.5, color: AppTheme.searchHint),
+                style: GoogleFonts.inter(fontSize: 14.5, color: AppTheme.searchHint),
               ),
               const SizedBox(width: 12),
               Container(width: 1, height: 24, color: AppTheme.topSection),
@@ -236,7 +236,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
           const SizedBox(width: 4),
           Text(
             'New group',
-            style: GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w500, color: AppTheme.blue),
+            style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w500, color: AppTheme.blue),
           ),
         ],
       ),
@@ -260,11 +260,11 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   children: [
                     Text(
                       'Default ',
-                      style: GoogleFonts.roboto(fontSize: 15, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                      style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
                     ),
                     Text(
                       '(25)',
-                      style: GoogleFonts.roboto(fontSize: 15, fontWeight: FontWeight.w500, color: AppTheme.textSecondary),
+                      style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w500, color: AppTheme.textSecondary),
                     ),
                     const Spacer(),
                     const Icon(Icons.add, size: 23, color: AppTheme.textPrimary),

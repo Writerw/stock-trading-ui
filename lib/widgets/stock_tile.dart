@@ -27,7 +27,7 @@ class StockTile extends StatelessWidget {
                 children: [
                   Text(
                     stock.symbol,
-                    style: GoogleFonts.roboto(
+                    style: GoogleFonts.inter(
                       fontSize: 15.5,
                       fontWeight: FontWeight.w400,
                       color: AppTheme.textPrimary,
@@ -36,7 +36,7 @@ class StockTile extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     stock.exchange,
-                    style: GoogleFonts.roboto(
+                    style: GoogleFonts.inter(
                       fontSize: 10.5,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 0.4,
@@ -52,7 +52,7 @@ class StockTile extends StatelessWidget {
               children: [
                 Text(
                   stock.ltpDisplay,
-                  style: GoogleFonts.roboto(
+                  style: GoogleFonts.inter(
                     fontSize: 15.5,
                     fontWeight: FontWeight.w400,
                     color: priceColor,
@@ -61,7 +61,7 @@ class StockTile extends StatelessWidget {
                 const SizedBox(height: 5),
                 Text(
                   stock.changeDisplay,
-                  style: GoogleFonts.roboto(
+                  style: GoogleFonts.inter(
                     fontSize: 12.5,
                     fontWeight: FontWeight.w400,
                     color: AppTheme.textPrimary,

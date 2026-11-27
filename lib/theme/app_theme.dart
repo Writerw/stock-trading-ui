@@ -29,7 +29,7 @@ class AppTheme {
       appBarTheme: AppBarTheme(
         backgroundColor: background,
         elevation: 0,
-        titleTextStyle: GoogleFonts.roboto(
+        titleTextStyle: GoogleFonts.inter(
           fontSize: 18,
           fontWeight: FontWeight.w500,
           color: textPrimary,
@@ -37,10 +37,10 @@ class AppTheme {
         iconTheme: const IconThemeData(color: textPrimary),
       ),
       textTheme: TextTheme(
-        bodyLarge: GoogleFonts.roboto(fontSize: 16, color: textPrimary),
-        bodyMedium: GoogleFonts.roboto(fontSize: 14, color: textPrimary),
-        bodySmall: GoogleFonts.roboto(fontSize: 12, color: textSecondary),
-        titleMedium: GoogleFonts.roboto(fontSize: 14, fontWeight: FontWeight.w500, color: textPrimary),
+        bodyLarge: GoogleFonts.inter(fontSize: 16, color: textPrimary),
+        bodyMedium: GoogleFonts.inter(fontSize: 14, color: textPrimary),
+        bodySmall: GoogleFonts.inter(fontSize: 12, color: textSecondary),
+        titleMedium: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w500, color: textPrimary),
       ),
       cardTheme: const CardTheme(
         elevation: 0,
