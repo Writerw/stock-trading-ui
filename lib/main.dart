@@ -38,7 +38,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  static const Color _inactiveColor = Color(0xFF7B7B7B);
+  static const Color _inactiveColor = AppTheme.textSecondary; // #44474F (JetKite onSurfaceVariant)
 
   // Builds a nav item using custom SVG icons (outline when inactive, filled when selected)
   BottomNavigationBarItem _navItem(String name, String label) {
@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.white,
           elevation: 0,
           selectedItemColor: AppTheme.blue,
-          unselectedItemColor: const Color(0xFF7B7B7B),
+          unselectedItemColor: AppTheme.textSecondary,
           selectedFontSize: 11,
           unselectedFontSize: 11,
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
