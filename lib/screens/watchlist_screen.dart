@@ -4,6 +4,10 @@ import '../data/dummy_data.dart';
 import '../theme/app_theme.dart';
 import '../widgets/stock_tile.dart';
 
+/// Bumped on every deploy so you can confirm the loaded build.
+/// TODO: remove this version label once the UI is final.
+const String kBuildVersion = 'v1';
+
 class WatchlistScreen extends StatefulWidget {
   const WatchlistScreen({super.key});
 
@@ -63,7 +67,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                 const Icon(Icons.logout, size: 16, color: AppTheme.textPrimary),
                 const SizedBox(width: 6),
                 Text(
-                  'Exit demo',
+                  'Exit demo $kBuildVersion',
                   style: GoogleFonts.inter(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
