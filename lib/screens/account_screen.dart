@@ -18,17 +18,17 @@ class AccountScreen extends StatelessWidget {
             // "Demo User" + bell, still on the grey band
             Container(
               color: AppTheme.topSection,
-              padding: const EdgeInsets.fromLTRB(16, 2, 16, 16),
+              padding: const EdgeInsets.fromLTRB(10.56, 1.32, 10.56, 10.56),
               child: Row(
                 children: [
                   Text(
                     'Demo User',
                     style: GoogleFonts.inter(
-                        fontSize: 20, color: AppTheme.textSecondary),
+                        fontSize: 13.2, color: AppTheme.textSecondary),
                   ),
                   const Spacer(),
                   const Icon(Icons.notifications_none,
-                      size: 28, color: AppTheme.textPrimary),
+                      size: 18.48, color: AppTheme.textPrimary),
                 ],
               ),
             ),
@@ -40,30 +40,30 @@ class AccountScreen extends StatelessWidget {
                   Stack(
                     children: [
                       Positioned(
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        height: 52,
+                        top: 0.0,
+                        left: 0.0,
+                        right: 0.0,
+                        height: 34.32,
                         child: Container(color: AppTheme.topSection),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 14),
+                        padding: const EdgeInsets.symmetric(horizontal: 9.24),
                         child: _profileCard(),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 19.8),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 14),
+                    padding: const EdgeInsets.fromLTRB(10.56, 5.28, 10.56, 9.24),
                     child: Text(
                       'Account',
                       style: GoogleFonts.inter(
-                          fontSize: 17,
+                          fontSize: 11.22,
                           fontWeight: FontWeight.w600,
                           color: AppTheme.textPrimary),
                     ),
                   ),
-                  const Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
+                  const Divider(height: 0.33, thickness: 0.33, color: AppTheme.divider),
                   _row('Funds', Icons.currency_rupee),
                   _row('Mandates', Icons.event_repeat),
                   _row('App Code', Icons.lock_open_outlined),
@@ -71,7 +71,7 @@ class AccountScreen extends StatelessWidget {
                   _row('Settings', Icons.settings_outlined),
                   _row('Connected apps', Icons.view_in_ar_outlined),
                   _row('Logout', Icons.logout),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 15.84),
                 ],
               ),
             ),
@@ -84,15 +84,15 @@ class AccountScreen extends StatelessWidget {
   Widget _profileCard() {
     return Material(
       elevation: 1,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(6.6),
       shadowColor: Colors.black.withOpacity(0.12),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(6.6),
         child: Column(
           children: [
             Container(
               color: AppTheme.surface,
-              padding: const EdgeInsets.fromLTRB(20, 26, 20, 26),
+              padding: const EdgeInsets.fromLTRB(13.2, 17.16, 13.2, 17.16),
               child: Row(
                 children: [
                   Expanded(
@@ -102,27 +102,27 @@ class AccountScreen extends StatelessWidget {
                         Text(
                           'DEMOUSER',
                           style: GoogleFonts.inter(
-                              fontSize: 26, color: AppTheme.textPrimary),
+                              fontSize: 17.16, color: AppTheme.textPrimary),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 5.28),
                         Text(
                           'demo@zerodha.com',
                           style: GoogleFonts.inter(
-                              fontSize: 15, color: AppTheme.metaGrey),
+                              fontSize: 9.9, color: AppTheme.metaGrey),
                         ),
                       ],
                     ),
                   ),
                   Container(
-                    width: 92,
-                    height: 92,
+                    width: 60.72,
+                    height: 60.72,
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(
                         color: AppTheme.chipBlueBg, shape: BoxShape.circle),
                     child: Text(
                       'DU',
                       style: GoogleFonts.inter(
-                          fontSize: 30,
+                          fontSize: 19.8,
                           fontWeight: FontWeight.w500,
                           color: AppTheme.avatarText),
                     ),
@@ -132,13 +132,13 @@ class AccountScreen extends StatelessWidget {
             ),
             Container(
               color: AppTheme.rowAltBg,
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+              padding: const EdgeInsets.fromLTRB(13.2, 10.56, 13.2, 10.56),
               child: Row(
                 children: [
                   Text(
                     'Privacy mode',
                     style: GoogleFonts.inter(
-                        fontSize: 17,
+                        fontSize: 11.22,
                         fontWeight: FontWeight.w500,
                         color: AppTheme.textPrimary),
                   ),
@@ -155,19 +155,19 @@ class AccountScreen extends StatelessWidget {
 
   Widget _toggleOff() {
     return Container(
-      width: 52,
-      height: 30,
+      width: 34.32,
+      height: 19.8,
       decoration: BoxDecoration(
         color: const Color(0xFFE3E3E8),
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(9.9),
       ),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Padding(
-          padding: const EdgeInsets.all(3),
+          padding: const EdgeInsets.all(1.98),
           child: Container(
-            width: 24,
-            height: 24,
+            width: 15.84,
+            height: 15.84,
             decoration: const BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
@@ -182,21 +182,21 @@ class AccountScreen extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(16, 19, 16, 19),
+          padding: const EdgeInsets.fromLTRB(10.56, 12.54, 10.56, 12.54),
           child: Row(
             children: [
               Expanded(
                 child: Text(
                   label,
                   style: GoogleFonts.inter(
-                      fontSize: 17, color: AppTheme.textPrimary),
+                      fontSize: 11.22, color: AppTheme.textPrimary),
                 ),
               ),
-              Icon(icon, size: 24, color: AppTheme.metaGrey),
+              Icon(icon, size: 15.84, color: AppTheme.metaGrey),
             ],
           ),
         ),
-        const Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
+        const Divider(height: 0.33, thickness: 0.33, color: AppTheme.divider),
       ],
     );
   }

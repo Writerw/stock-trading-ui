@@ -16,7 +16,7 @@ class StockTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 13, 16, 13),
+        padding: const EdgeInsets.fromLTRB(10.56, 8.58, 10.56, 8.58),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,18 +28,18 @@ class StockTile extends StatelessWidget {
                   Text(
                     stock.symbol,
                     style: GoogleFonts.inter(
-                      fontSize: 15.5,
+                      fontSize: 10.23,
                       fontWeight: FontWeight.w400,
                       color: AppTheme.textPrimary,
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 3.3),
                   Text(
                     stock.exchange,
                     style: GoogleFonts.inter(
-                      fontSize: 10.5,
+                      fontSize: 6.93,
                       fontWeight: FontWeight.w500,
-                      letterSpacing: 0.4,
+                      letterSpacing: 0.26,
                       color: AppTheme.indicesGrey,
                     ),
                   ),
@@ -53,16 +53,16 @@ class StockTile extends StatelessWidget {
                 Text(
                   stock.ltpDisplay,
                   style: GoogleFonts.inter(
-                    fontSize: 15.5,
+                    fontSize: 10.23,
                     fontWeight: FontWeight.w400,
                     color: priceColor,
                   ),
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 3.3),
                 Text(
                   stock.changeDisplay,
                   style: GoogleFonts.inter(
-                    fontSize: 12.5,
+                    fontSize: 8.25,
                     fontWeight: FontWeight.w400,
                     color: AppTheme.textPrimary,
                   ),

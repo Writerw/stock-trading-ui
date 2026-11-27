@@ -40,19 +40,19 @@ class _OrdersScreenState extends State<OrdersScreen> {
               child: Container(
                 decoration: const BoxDecoration(
                   color: AppTheme.surface,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(14)),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(9.24)),
                 ),
                 clipBehavior: Clip.antiAlias,
                 child: Column(
                   children: [
                     _toolbar(),
-                    const Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
+                    const Divider(height: 0.33, thickness: 0.33, color: AppTheme.divider),
                     Expanded(
                       child: ListView.separated(
                         padding: EdgeInsets.zero,
                         itemCount: openOrders.length,
                         separatorBuilder: (_, __) => const Divider(
-                            height: 0.5, thickness: 0.5, color: AppTheme.divider),
+                            height: 0.33, thickness: 0.33, color: AppTheme.divider),
                         itemBuilder: (context, i) => _orderRow(openOrders[i]),
                       ),
                     ),
@@ -68,22 +68,22 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
   Widget _toolbar() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 13, 16, 13),
+      padding: const EdgeInsets.fromLTRB(10.56, 8.58, 10.56, 8.58),
       child: Row(
         children: [
-          const Icon(Icons.search, color: AppTheme.blue, size: 25),
-          const SizedBox(width: 24),
+          const Icon(Icons.search, color: AppTheme.blue, size: 16.5),
+          const SizedBox(width: 15.84),
           const RotatedBox(
             quarterTurns: 1,
-            child: Icon(Icons.tune, color: AppTheme.blue, size: 23),
+            child: Icon(Icons.tune, color: AppTheme.blue, size: 15.18),
           ),
           const Spacer(),
-          const Icon(Icons.radio_button_checked, color: AppTheme.blue, size: 21),
-          const SizedBox(width: 9),
+          const Icon(Icons.radio_button_checked, color: AppTheme.blue, size: 13.86),
+          const SizedBox(width: 5.94),
           Text(
             'Tradebook',
             style: GoogleFonts.inter(
-                fontSize: 16, fontWeight: FontWeight.w500, color: AppTheme.blue),
+                fontSize: 10.56, fontWeight: FontWeight.w500, color: AppTheme.blue),
           ),
         ],
       ),
@@ -92,19 +92,19 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
   Widget _chip(String text, Color bg, Color fg) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(3)),
+      padding: const EdgeInsets.symmetric(horizontal: 6.6, vertical: 3.3),
+      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(1.98)),
       child: Text(
         text,
         style: GoogleFonts.inter(
-            fontSize: 12.5, fontWeight: FontWeight.w500, color: fg),
+            fontSize: 8.25, fontWeight: FontWeight.w500, color: fg),
       ),
     );
   }
 
   Widget _orderRow(OrderItem o) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 15, 16, 15),
+      padding: const EdgeInsets.fromLTRB(10.56, 9.9, 10.56, 9.9),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -116,35 +116,35 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 o.isBuy ? AppTheme.chipBlueBg : AppTheme.chipRedBg,
                 o.isBuy ? AppTheme.blue : AppTheme.red,
               ),
-              const SizedBox(width: 11),
+              const SizedBox(width: 7.26),
               Text(o.qty,
                   style: GoogleFonts.inter(
-                      fontSize: 14.5, color: AppTheme.textPrimary)),
+                      fontSize: 9.57, color: AppTheme.textPrimary)),
               const Spacer(),
-              const Icon(Icons.access_time, size: 15, color: AppTheme.metaGrey),
-              const SizedBox(width: 4),
+              const Icon(Icons.access_time, size: 9.9, color: AppTheme.metaGrey),
+              const SizedBox(width: 2.64),
               Text(o.time,
                   style: GoogleFonts.inter(
-                      fontSize: 13.5, color: AppTheme.metaGrey)),
-              const SizedBox(width: 11),
+                      fontSize: 8.91, color: AppTheme.metaGrey)),
+              const SizedBox(width: 7.26),
               _chip(o.status, AppTheme.chipGreyBg, AppTheme.textPrimary),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 7.92),
           // line 2: symbol + price
           Row(
             children: [
               Expanded(
                 child: Text(o.symbol,
                     style: GoogleFonts.inter(
-                        fontSize: 16.5, color: AppTheme.textPrimary)),
+                        fontSize: 10.89, color: AppTheme.textPrimary)),
               ),
               Text(o.price,
                   style: GoogleFonts.inter(
-                      fontSize: 16.5, color: AppTheme.textPrimary)),
+                      fontSize: 10.89, color: AppTheme.textPrimary)),
             ],
           ),
-          const SizedBox(height: 9),
+          const SizedBox(height: 5.94),
           // line 3: tags + LTP
           Row(
             children: [
@@ -155,17 +155,17 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       child: Text(o.tags,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.inter(
-                              fontSize: 13, color: AppTheme.metaGrey)),
+                              fontSize: 8.58, color: AppTheme.metaGrey)),
                     ),
                     if (o.noteIcon != null) ...[
-                      const SizedBox(width: 9),
-                      Icon(o.noteIcon, size: 14, color: AppTheme.metaGrey),
+                      const SizedBox(width: 5.94),
+                      Icon(o.noteIcon, size: 9.24, color: AppTheme.metaGrey),
                     ],
                     if (o.noteText != null) ...[
-                      const SizedBox(width: 3),
+                      const SizedBox(width: 1.98),
                       Text(o.noteText!,
                           style: GoogleFonts.inter(
-                              fontSize: 13, color: AppTheme.metaGrey)),
+                              fontSize: 8.58, color: AppTheme.metaGrey)),
                     ],
                   ],
                 ),
@@ -175,11 +175,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   TextSpan(
                       text: 'LTP ',
                       style: GoogleFonts.inter(
-                          fontSize: 13, color: AppTheme.metaGrey)),
+                          fontSize: 8.58, color: AppTheme.metaGrey)),
                   TextSpan(
                       text: o.ltp,
                       style: GoogleFonts.inter(
-                          fontSize: 13, color: AppTheme.textPrimary)),
+                          fontSize: 8.58, color: AppTheme.textPrimary)),
                 ]),
               ),
             ],

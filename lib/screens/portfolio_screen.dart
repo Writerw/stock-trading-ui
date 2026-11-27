@@ -45,7 +45,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 10),
+          padding: const EdgeInsets.fromLTRB(7.92, 5.28, 7.92, 6.6),
           child: card,
         ),
         Expanded(
@@ -53,7 +53,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             width: double.infinity,
             decoration: const BoxDecoration(
               color: AppTheme.surface,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(14)),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(9.24)),
             ),
             clipBehavior: Clip.antiAlias,
             child: body,
@@ -66,22 +66,22 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   Widget _cardShell(Widget child) {
     return Material(
       elevation: 1.5,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(5.28),
       shadowColor: Colors.black.withOpacity(0.12),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: AppTheme.surface,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(5.28),
         ),
-        padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
+        padding: const EdgeInsets.fromLTRB(13.2, 11.88, 13.2, 11.88),
         child: child,
       ),
     );
   }
 
   TextStyle _label() =>
-      GoogleFonts.inter(fontSize: 15.5, color: AppTheme.metaGrey);
+      GoogleFonts.inter(fontSize: 10.23, color: AppTheme.metaGrey);
 
   // ───────────────────────── HOLDINGS ─────────────────────────
   Widget _holdings() {
@@ -96,10 +96,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Invested', style: _label()),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 3.96),
                     Text(holdingsInvested,
                         style: GoogleFonts.inter(
-                            fontSize: 24, color: AppTheme.textPrimary)),
+                            fontSize: 15.84, color: AppTheme.textPrimary)),
                   ],
                 ),
                 const Spacer(),
@@ -107,33 +107,33 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text('Current', style: _label()),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 3.96),
                     Text(holdingsCurrent,
                         style: GoogleFonts.inter(
-                            fontSize: 24, color: AppTheme.textPrimary)),
+                            fontSize: 15.84, color: AppTheme.textPrimary)),
                   ],
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-            const Divider(height: 1, thickness: 0.6, color: AppTheme.divider),
-            const SizedBox(height: 14),
+            const SizedBox(height: 10.56),
+            const Divider(height: 0.66, thickness: 0.4, color: AppTheme.divider),
+            const SizedBox(height: 9.24),
             Row(
               children: [
                 Text('P&L', style: _label()),
                 const Spacer(),
                 Text(holdingsPnl,
                     style: GoogleFonts.inter(
-                        fontSize: 20, color: AppTheme.green)),
-                const SizedBox(width: 12),
+                        fontSize: 13.2, color: AppTheme.green)),
+                const SizedBox(width: 7.92),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 6.6, vertical: 3.3),
                   decoration: BoxDecoration(
                       color: AppTheme.pillGreenBg,
-                      borderRadius: BorderRadius.circular(6)),
+                      borderRadius: BorderRadius.circular(3.96)),
                   child: Text(holdingsPnlPct,
                       style: GoogleFonts.inter(
-                          fontSize: 14, color: AppTheme.green)),
+                          fontSize: 9.24, color: AppTheme.green)),
                 ),
               ],
             ),
@@ -143,33 +143,33 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
       body: Column(
         children: [
           _holdingsToolbar(),
-          const Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
+          const Divider(height: 0.33, thickness: 0.33, color: AppTheme.divider),
           Expanded(
             child: ListView.separated(
               padding: EdgeInsets.zero,
               itemCount: holdings.length,
               separatorBuilder: (_, __) => const Divider(
-                  height: 0.5, thickness: 0.5, color: AppTheme.divider),
+                  height: 0.33, thickness: 0.33, color: AppTheme.divider),
               itemBuilder: (context, i) => _holdingRow(holdings[i]),
             ),
           ),
           // pinned Day's P&L footer
-          const Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
+          const Divider(height: 0.33, thickness: 0.33, color: AppTheme.divider),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 15, 16, 15),
+            padding: const EdgeInsets.fromLTRB(10.56, 9.9, 10.56, 9.9),
             child: Row(
               children: [
                 Text("Day's P&L",
                     style: GoogleFonts.inter(
-                        fontSize: 16, color: AppTheme.textPrimary)),
+                        fontSize: 10.56, color: AppTheme.textPrimary)),
                 const Spacer(),
                 Text(holdingsDayPnl,
                     style: GoogleFonts.inter(
-                        fontSize: 16, color: AppTheme.red)),
-                const SizedBox(width: 16),
+                        fontSize: 10.56, color: AppTheme.red)),
+                const SizedBox(width: 10.56),
                 Text(holdingsDayPct,
                     style: GoogleFonts.inter(
-                        fontSize: 16, color: AppTheme.red)),
+                        fontSize: 10.56, color: AppTheme.red)),
               ],
             ),
           ),
@@ -180,34 +180,34 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _holdingsToolbar() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+      padding: const EdgeInsets.fromLTRB(10.56, 7.92, 10.56, 7.92),
       child: Row(
         children: [
-          const Icon(Icons.search, color: AppTheme.blue, size: 25),
-          const SizedBox(width: 22),
+          const Icon(Icons.search, color: AppTheme.blue, size: 16.5),
+          const SizedBox(width: 14.52),
           const RotatedBox(
               quarterTurns: 1,
-              child: Icon(Icons.tune, color: AppTheme.blue, size: 23)),
-          const SizedBox(width: 18),
+              child: Icon(Icons.tune, color: AppTheme.blue, size: 15.18)),
+          const SizedBox(width: 11.88),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+            padding: const EdgeInsets.symmetric(horizontal: 7.92, vertical: 4.62),
             decoration: BoxDecoration(
                 color: AppTheme.rowAltBg,
-                borderRadius: BorderRadius.circular(6)),
+                borderRadius: BorderRadius.circular(3.96)),
             child: Row(
               children: [
                 Text('Equity',
                     style: GoogleFonts.inter(
-                        fontSize: 15, color: AppTheme.textPrimary)),
-                const SizedBox(width: 3),
+                        fontSize: 9.9, color: AppTheme.textPrimary)),
+                const SizedBox(width: 1.98),
                 const Icon(Icons.keyboard_arrow_down,
-                    size: 20, color: AppTheme.textPrimary),
+                    size: 13.2, color: AppTheme.textPrimary),
               ],
             ),
           ),
           const Spacer(),
           _toolAction(Icons.people_outline, 'Family'),
-          const SizedBox(width: 18),
+          const SizedBox(width: 11.88),
           _toolAction(Icons.donut_large, 'Analytics'),
         ],
       ),
@@ -217,7 +217,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   Widget _holdingRow(Holding h) {
     final c = h.up ? AppTheme.green : AppTheme.red;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 15, 16, 15),
+      padding: const EdgeInsets.fromLTRB(10.56, 9.9, 10.56, 9.9),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -225,42 +225,42 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             children: [
               Expanded(child: _qtyAvg(h.qty, h.avg, colorQty: false)),
               Text('${h.pnlPct >= 0 ? '+' : ''}${h.pnlPct.toStringAsFixed(2)}%',
-                  style: GoogleFonts.inter(fontSize: 14.5, color: c)),
+                  style: GoogleFonts.inter(fontSize: 9.57, color: c)),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 6.6),
           Row(
             children: [
               Expanded(
                 child: Text(h.symbol,
                     style: GoogleFonts.inter(
-                        fontSize: 16.5, color: AppTheme.textPrimary)),
+                        fontSize: 10.89, color: AppTheme.textPrimary)),
               ),
               Text(h.pnlAbs,
-                  style: GoogleFonts.inter(fontSize: 16.5, color: c)),
+                  style: GoogleFonts.inter(fontSize: 10.89, color: c)),
             ],
           ),
-          const SizedBox(height: 9),
+          const SizedBox(height: 5.94),
           Row(
             children: [
               Expanded(
                 child: Text('Invested ${h.invested}',
                     style: GoogleFonts.inter(
-                        fontSize: 13, color: AppTheme.metaGrey)),
+                        fontSize: 8.58, color: AppTheme.metaGrey)),
               ),
               Text.rich(TextSpan(children: [
                 TextSpan(
                     text: 'LTP ',
                     style: GoogleFonts.inter(
-                        fontSize: 13, color: AppTheme.metaGrey)),
+                        fontSize: 8.58, color: AppTheme.metaGrey)),
                 TextSpan(
                     text: '${h.ltp} ',
                     style: GoogleFonts.inter(
-                        fontSize: 13, color: AppTheme.textPrimary)),
+                        fontSize: 8.58, color: AppTheme.textPrimary)),
                 TextSpan(
                     text: h.ltpPct,
                     style: GoogleFonts.inter(
-                        fontSize: 13, color: AppTheme.metaGrey)),
+                        fontSize: 8.58, color: AppTheme.metaGrey)),
               ])),
             ],
           ),
@@ -276,22 +276,22 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         Column(
           children: [
             Text('Total P&L', style: _label()),
-            const SizedBox(height: 8),
+            const SizedBox(height: 5.28),
             Text(positionsTotalPnl,
-                style: GoogleFonts.inter(fontSize: 26, color: AppTheme.red)),
+                style: GoogleFonts.inter(fontSize: 17.16, color: AppTheme.red)),
           ],
         ),
       ),
       body: Column(
         children: [
           _positionsToolbar(),
-          const Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
+          const Divider(height: 0.33, thickness: 0.33, color: AppTheme.divider),
           Expanded(
             child: ListView.separated(
               padding: EdgeInsets.zero,
               itemCount: positions.length,
               separatorBuilder: (_, __) => const Divider(
-                  height: 0.5, thickness: 0.5, color: AppTheme.divider),
+                  height: 0.33, thickness: 0.33, color: AppTheme.divider),
               itemBuilder: (context, i) => _positionRow(positions[i]),
             ),
           ),
@@ -302,19 +302,19 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _positionsToolbar() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+      padding: const EdgeInsets.fromLTRB(10.56, 7.92, 10.56, 7.92),
       child: Row(
         children: [
-          const Icon(Icons.search, color: AppTheme.blue, size: 25),
-          const SizedBox(width: 22),
+          const Icon(Icons.search, color: AppTheme.blue, size: 16.5),
+          const SizedBox(width: 14.52),
           const RotatedBox(
               quarterTurns: 1,
-              child: Icon(Icons.tune, color: AppTheme.blue, size: 23)),
-          const SizedBox(width: 20),
+              child: Icon(Icons.tune, color: AppTheme.blue, size: 15.18)),
+          const SizedBox(width: 13.2),
           _toolAction(Icons.segment, 'Group'),
           const Spacer(),
           _toolAction(Icons.candlestick_chart_outlined, 'Analyze'),
-          const SizedBox(width: 18),
+          const SizedBox(width: 11.88),
           _toolAction(Icons.donut_large, 'P&L'),
         ],
       ),
@@ -324,7 +324,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   Widget _positionRow(Position p) {
     final c = p.up ? AppTheme.green : AppTheme.red;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 15, 16, 15),
+      padding: const EdgeInsets.fromLTRB(10.56, 9.9, 10.56, 9.9),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -334,35 +334,35 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               Row(children: [for (final ch in p.chips) _prodChip(ch)]),
             ],
           ),
-          const SizedBox(height: 11),
+          const SizedBox(height: 7.26),
           Row(
             children: [
               Expanded(
                 child: Text(p.symbol,
                     style: GoogleFonts.inter(
-                        fontSize: 16.5, color: AppTheme.textPrimary)),
+                        fontSize: 10.89, color: AppTheme.textPrimary)),
               ),
               Text(p.pnl,
-                  style: GoogleFonts.inter(fontSize: 16.5, color: c)),
+                  style: GoogleFonts.inter(fontSize: 10.89, color: c)),
             ],
           ),
-          const SizedBox(height: 9),
+          const SizedBox(height: 5.94),
           Row(
             children: [
               Expanded(
                 child: Text(p.exchange,
                     style: GoogleFonts.inter(
-                        fontSize: 13, color: AppTheme.metaGrey)),
+                        fontSize: 8.58, color: AppTheme.metaGrey)),
               ),
               Text.rich(TextSpan(children: [
                 TextSpan(
                     text: 'LTP ',
                     style: GoogleFonts.inter(
-                        fontSize: 13, color: AppTheme.metaGrey)),
+                        fontSize: 8.58, color: AppTheme.metaGrey)),
                 TextSpan(
                     text: p.ltp,
                     style: GoogleFonts.inter(
-                        fontSize: 13, color: AppTheme.textPrimary)),
+                        fontSize: 8.58, color: AppTheme.textPrimary)),
               ])),
             ],
           ),
@@ -378,14 +378,14 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         : (qty < 0 ? AppTheme.red : AppTheme.blue);
     return Row(
       children: [
-        Text('Qty. ', style: GoogleFonts.inter(fontSize: 14.5, color: AppTheme.metaGrey)),
-        Text('$qty', style: GoogleFonts.inter(fontSize: 14.5, color: qtyColor)),
-        const SizedBox(width: 8),
+        Text('Qty. ', style: GoogleFonts.inter(fontSize: 9.57, color: AppTheme.metaGrey)),
+        Text('$qty', style: GoogleFonts.inter(fontSize: 9.57, color: qtyColor)),
+        const SizedBox(width: 5.28),
         if (!colorQty) ...[
-          Text('• ', style: GoogleFonts.inter(fontSize: 14.5, color: AppTheme.metaGrey)),
+          Text('• ', style: GoogleFonts.inter(fontSize: 9.57, color: AppTheme.metaGrey)),
         ],
-        Text('Avg. ', style: GoogleFonts.inter(fontSize: 14.5, color: AppTheme.metaGrey)),
-        Text(avg, style: GoogleFonts.inter(fontSize: 14.5, color: AppTheme.textPrimary)),
+        Text('Avg. ', style: GoogleFonts.inter(fontSize: 9.57, color: AppTheme.metaGrey)),
+        Text(avg, style: GoogleFonts.inter(fontSize: 9.57, color: AppTheme.textPrimary)),
       ],
     );
   }
@@ -411,23 +411,23 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         break;
     }
     return Container(
-      margin: const EdgeInsets.only(left: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(3)),
+      margin: const EdgeInsets.only(left: 5.28),
+      padding: const EdgeInsets.symmetric(horizontal: 6.6, vertical: 3.96),
+      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(1.98)),
       child: Text(text,
           style: GoogleFonts.inter(
-              fontSize: 12.5, fontWeight: FontWeight.w500, color: fg)),
+              fontSize: 8.25, fontWeight: FontWeight.w500, color: fg)),
     );
   }
 
   Widget _toolAction(IconData icon, String label) {
     return Row(
       children: [
-        Icon(icon, size: 21, color: AppTheme.blue),
-        const SizedBox(width: 6),
+        Icon(icon, size: 13.86, color: AppTheme.blue),
+        const SizedBox(width: 3.96),
         Text(label,
             style: GoogleFonts.inter(
-                fontSize: 15.5, fontWeight: FontWeight.w500, color: AppTheme.blue)),
+                fontSize: 10.23, fontWeight: FontWeight.w500, color: AppTheme.blue)),
       ],
     );
   }

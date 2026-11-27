@@ -13,7 +13,7 @@ class KiteAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppTheme.topSection,
-      padding: const EdgeInsets.fromLTRB(16, 10, 14, 10),
+      padding: const EdgeInsets.fromLTRB(10.56, 6.6, 9.24, 6.6),
       child: Row(
         children: [
           Flexible(
@@ -22,28 +22,28 @@ class KiteAppBar extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.inter(
-                fontSize: 25,
+                fontSize: 16.5,
                 fontWeight: FontWeight.w600,
                 color: AppTheme.textPrimary,
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 7.92),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 7),
+            padding: const EdgeInsets.symmetric(horizontal: 8.58, vertical: 4.62),
             decoration: BoxDecoration(
               color: AppTheme.exitDemo,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(13.2),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.logout, size: 16, color: AppTheme.textPrimary),
-                const SizedBox(width: 6),
+                const Icon(Icons.logout, size: 10.56, color: AppTheme.textPrimary),
+                const SizedBox(width: 3.96),
                 Text(
                   'Exit demo $kBuildVersion',
                   style: GoogleFonts.inter(
-                    fontSize: 14,
+                    fontSize: 9.24,
                     fontWeight: FontWeight.w500,
                     color: AppTheme.textPrimary,
                   ),
@@ -52,7 +52,7 @@ class KiteAppBar extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          const Icon(Icons.keyboard_arrow_down, size: 28, color: AppTheme.textPrimary),
+          const Icon(Icons.keyboard_arrow_down, size: 18.48, color: AppTheme.textPrimary),
         ],
       ),
     );

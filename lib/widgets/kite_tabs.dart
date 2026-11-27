@@ -58,7 +58,7 @@ class KiteTabs extends StatelessWidget {
         ],
       );
     }
-    return Container(color: AppTheme.topSection, height: 46, child: inner);
+    return Container(color: AppTheme.topSection, height: 30.36, child: inner);
   }
 
   Widget _tab(KiteTab t, int i) {
@@ -79,17 +79,17 @@ class KiteTabs extends StatelessWidget {
                       Text(
                         t.label,
                         style: GoogleFonts.inter(
-                          fontSize: 15,
+                          fontSize: 9.9,
                           fontWeight: sel ? FontWeight.w500 : FontWeight.w400,
                           color: sel ? AppTheme.blue : AppTheme.textPrimary,
                         ),
                       ),
                       if (t.lock) ...[
-                        const SizedBox(width: 5),
-                        const Icon(Icons.lock_outline, size: 14, color: AppTheme.textPrimary),
+                        const SizedBox(width: 3.3),
+                        const Icon(Icons.lock_outline, size: 9.24, color: AppTheme.textPrimary),
                       ],
                       if (t.badge != null) ...[
-                        const SizedBox(width: 7),
+                        const SizedBox(width: 4.62),
                         _badge(t.badge!, sel),
                       ],
                     ],
@@ -97,7 +97,7 @@ class KiteTabs extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 2.5,
+                height: 1.65,
                 width: double.infinity,
                 color: sel ? AppTheme.blue : Colors.transparent,
               ),
@@ -110,8 +110,8 @@ class KiteTabs extends StatelessWidget {
 
   Widget _badge(int n, bool sel) {
     return Container(
-      width: 22,
-      height: 22,
+      width: 14.52,
+      height: 14.52,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: sel ? AppTheme.badgeActive : AppTheme.badgeInactive,
@@ -120,7 +120,7 @@ class KiteTabs extends StatelessWidget {
       child: Text(
         '$n',
         style: GoogleFonts.inter(
-          fontSize: 11.5,
+          fontSize: 7.59,
           fontWeight: FontWeight.w500,
           color: Colors.white,
         ),

@@ -39,13 +39,13 @@ class _IpoScreenState extends State<IpoScreen> {
               child: Container(
                 decoration: const BoxDecoration(
                   color: AppTheme.surface,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(14)),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(9.24)),
                 ),
                 clipBehavior: Clip.antiAlias,
                 child: Column(
                   children: [
                     _toolbar(),
-                    const Divider(height: 0.5, thickness: 0.5, color: AppTheme.divider),
+                    const Divider(height: 0.33, thickness: 0.33, color: AppTheme.divider),
                     Expanded(
                       child: ListView(
                         padding: EdgeInsets.zero,
@@ -53,7 +53,7 @@ class _IpoScreenState extends State<IpoScreen> {
                           for (final ipo in ongoingIpos) ...[
                             _ipoRow(ipo),
                             const Divider(
-                                height: 0.5, thickness: 0.5, color: AppTheme.divider),
+                                height: 0.33, thickness: 0.33, color: AppTheme.divider),
                           ],
                           _viewUpcoming(),
                         ],
@@ -71,14 +71,14 @@ class _IpoScreenState extends State<IpoScreen> {
 
   Widget _toolbar() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 11, 12, 11),
+      padding: const EdgeInsets.fromLTRB(10.56, 7.26, 7.92, 7.26),
       child: Row(
         children: [
-          const Icon(Icons.search, color: AppTheme.blue, size: 25),
-          const SizedBox(width: 24),
+          const Icon(Icons.search, color: AppTheme.blue, size: 16.5),
+          const SizedBox(width: 15.84),
           const RotatedBox(
             quarterTurns: 1,
-            child: Icon(Icons.tune, color: AppTheme.blue, size: 23),
+            child: Icon(Icons.tune, color: AppTheme.blue, size: 15.18),
           ),
           const Spacer(),
           _seg0('Ongoing', 0),
@@ -95,16 +95,16 @@ class _IpoScreenState extends State<IpoScreen> {
       onTap: () => setState(() => _seg = i),
       behavior: HitTestBehavior.opaque,
       child: Container(
-        margin: const EdgeInsets.only(left: 4),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+        margin: const EdgeInsets.only(left: 2.64),
+        padding: const EdgeInsets.symmetric(horizontal: 9.24, vertical: 5.94),
         decoration: BoxDecoration(
           color: sel ? AppTheme.chipGreyBg : Colors.transparent,
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(3.96),
         ),
         child: Text(
           label,
           style: GoogleFonts.inter(
-            fontSize: 15.5,
+            fontSize: 10.23,
             fontWeight: sel ? FontWeight.w500 : FontWeight.w400,
             color: sel ? AppTheme.blue : AppTheme.textPrimary,
           ),
@@ -115,27 +115,27 @@ class _IpoScreenState extends State<IpoScreen> {
 
   Widget _ipoRow(IpoItem ipo) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 17, 16, 17),
+      padding: const EdgeInsets.fromLTRB(10.56, 11.22, 10.56, 11.22),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             ipo.company,
-            style: GoogleFonts.inter(fontSize: 14.5, color: AppTheme.metaGrey),
+            style: GoogleFonts.inter(fontSize: 9.57, color: AppTheme.metaGrey),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 6.6),
           Row(
             children: [
               Text(
                 ipo.symbol,
-                style: GoogleFonts.inter(fontSize: 17, color: AppTheme.textPrimary),
+                style: GoogleFonts.inter(fontSize: 11.22, color: AppTheme.textPrimary),
               ),
               if (ipo.sme) ...[
-                const SizedBox(width: 10),
+                const SizedBox(width: 6.6),
                 Text(
                   'SME',
                   style: GoogleFonts.inter(
-                      fontSize: 12.5,
+                      fontSize: 8.25,
                       fontWeight: FontWeight.w500,
                       color: AppTheme.blue),
                 ),
@@ -143,45 +143,45 @@ class _IpoScreenState extends State<IpoScreen> {
               const Spacer(),
               if (ipo.openForApply)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 9),
+                  padding: const EdgeInsets.symmetric(horizontal: 14.52, vertical: 5.94),
                   decoration: BoxDecoration(
-                      color: AppTheme.blue, borderRadius: BorderRadius.circular(4)),
+                      color: AppTheme.blue, borderRadius: BorderRadius.circular(2.64)),
                   child: Text(
                     'Apply',
                     style: GoogleFonts.inter(
-                        fontSize: 15.5,
+                        fontSize: 10.23,
                         fontWeight: FontWeight.w500,
                         color: Colors.white),
                   ),
                 )
               else
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
+                  padding: const EdgeInsets.symmetric(horizontal: 10.56, vertical: 5.94),
                   decoration: BoxDecoration(
                       color: AppTheme.chipGreyBg,
-                      borderRadius: BorderRadius.circular(4)),
+                      borderRadius: BorderRadius.circular(2.64)),
                   child: Text(
                     'CLOSED',
                     style: GoogleFonts.inter(
-                        fontSize: 13.5,
+                        fontSize: 8.91,
                         fontWeight: FontWeight.w500,
                         color: AppTheme.textPrimary),
                   ),
                 ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 6.6),
           Row(
             children: [
               Expanded(
                 child: Text(
                   ipo.priceBand,
-                  style: GoogleFonts.inter(fontSize: 15, color: AppTheme.textPrimary),
+                  style: GoogleFonts.inter(fontSize: 9.9, color: AppTheme.textPrimary),
                 ),
               ),
               Text(
                 ipo.dates,
-                style: GoogleFonts.inter(fontSize: 15, color: AppTheme.textPrimary),
+                style: GoogleFonts.inter(fontSize: 9.9, color: AppTheme.textPrimary),
               ),
             ],
           ),
@@ -192,16 +192,16 @@ class _IpoScreenState extends State<IpoScreen> {
 
   Widget _viewUpcoming() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+      padding: const EdgeInsets.fromLTRB(10.56, 13.2, 10.56, 13.2),
       child: Row(
         children: [
           Text(
             'View upcoming IPOs',
             style: GoogleFonts.inter(
-                fontSize: 16.5, fontWeight: FontWeight.w500, color: AppTheme.blue),
+                fontSize: 10.89, fontWeight: FontWeight.w500, color: AppTheme.blue),
           ),
-          const SizedBox(width: 10),
-          const Icon(Icons.arrow_forward, size: 19, color: AppTheme.blue),
+          const SizedBox(width: 6.6),
+          const Icon(Icons.arrow_forward, size: 12.54, color: AppTheme.blue),
         ],
       ),
     );
