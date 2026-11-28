@@ -1,6 +1,9 @@
 name: Build APK
 
+# Runs when a pushed commit message contains "[apk]", or manually.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -8,8 +11,9 @@ permissions:
 
 jobs:
   apk:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[apk]')
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout code
@@ -40,6 +44,17 @@ jobs:
           cp pubspec_backup.yaml pubspec.yaml
           rm -rf lib_backup pubspec_backup.yaml
 
+      # Release builds have no INTERNET permission by default; google_fonts
+      # downloads Inter at runtime, so without this the APK falls back to the
+      # wrong font. Also give the app a readable name on the home screen.
+      - name: Configure Android manifest
+        run: |
+          M=android/app/src/main/AndroidManifest.xml
+          grep -q 'android.permission.INTERNET' $M || \
+            sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET"/>\n    <application#' $M
+          sed -i 's#android:label="stock_app"#android:label="Stock App"#' $M
+          cat $M
+
       - name: Get dependencies
         run: flutter pub get
 
@@ -48,11 +63,11 @@ jobs:
 
       - name: Create release with APK
         run: |
-          gh release delete latest --yes 2>/dev/null || true
+          gh release delete latest --yes --cleanup-tag 2>/dev/null || true
           cp build/app/outputs/flutter-apk/app-release.apk stock-app.apk
           gh release create latest stock-app.apk \
             --title "Stock App - Latest Build" \
-            --notes "Direct APK download. Tap the link below to install on Android." \
+            --notes "Direct APK download. Tap stock-app.apk below to install on Android." \
             --latest
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
