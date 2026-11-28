@@ -1,4 +1,3 @@
-import 'dart:ui' show FontFeature;
 import 'package:flutter/material.dart';
 
 /// Kite's typeface is Inter with tabular (fixed-width) figures — verified by

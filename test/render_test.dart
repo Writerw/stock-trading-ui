@@ -12,8 +12,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:stock_app/main.dart';
 
 const double kDpr = 2.625;
-const double kFontScale =
-    double.fromEnvironment('FONT_SCALE', defaultValue: 0.87);
+final double kFontScale = double.parse(
+    const String.fromEnvironment('FONT_SCALE', defaultValue: '0.87'));
 
 Future<void> _loadFonts() async {
   final manifest =
@@ -56,15 +56,15 @@ void main() {
     'account': [4, 0],
   };
 
-  for (final e in screens.entries) {
-    testWidgets('render ${e.key}', (tester) async {
+  Future<void> render(WidgetTester tester, String name, int index, int tab,
+      double fontScale) async {
       // Flutter view excludes the 62px system nav bar; the status bar (125px)
       // is drawn over the app as on the real device.
       tester.view.physicalSize = const Size(1080, 2412 - 62);
       tester.view.devicePixelRatio = kDpr;
       tester.view.padding = const FakeViewPadding(top: 125);
       tester.view.viewPadding = const FakeViewPadding(top: 125);
-      tester.platformDispatcher.textScaleFactorTestValue = kFontScale;
+      tester.platformDispatcher.textScaleFactorTestValue = fontScale;
       addTearDown(tester.view.reset);
       addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
 
@@ -72,13 +72,29 @@ void main() {
       await tester.pumpWidget(RepaintBoundary(
         key: key,
         child: MyApp(
-          key: ValueKey(e.key),
-          initialIndex: e.value[0],
-          portfolioTab: e.value[1],
+          key: ValueKey(name),
+          initialIndex: index,
+          portfolioTab: tab,
         ),
       ));
       await _settle(tester);
-      await expectLater(find.byKey(key), matchesGoldenFile('renders/${e.key}.png'));
+      await expectLater(find.byKey(key), matchesGoldenFile('renders/$name.png'));
+  }
+
+  for (final e in screens.entries) {
+    testWidgets('render ${e.key}', (tester) async {
+      await render(tester, e.key, e.value[0], e.value[1], kFontScale);
     });
+  }
+
+  // Calibration: same screens at several system font scales, to find the one
+  // that reproduces the real device screenshot.
+  for (final fs in [0.80, 0.85, 0.90, 1.00]) {
+    for (final e in {'watchlist': [0, 0], 'holdings': [2, 0]}.entries) {
+      final tag = (fs * 100).round().toString().padLeft(3, '0');
+      testWidgets('calibrate ${e.key} @$fs', (tester) async {
+        await render(tester, 'cal_${e.key}_$tag', e.value[0], e.value[1], fs);
+      });
+    }
   }
 }
