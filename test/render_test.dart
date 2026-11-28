@@ -5,8 +5,10 @@
 // UI can be compared numerically against the Kite screenshots.
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:stock_app/main.dart';
@@ -78,7 +80,14 @@ void main() {
         ),
       ));
       await _settle(tester);
-      await expectLater(find.byKey(key), matchesGoldenFile('renders/$name.png'));
+      // Capture at full device resolution (goldens would be 1x).
+      final boundary = tester.renderObject<RenderRepaintBoundary>(find.byKey(key));
+      await tester.runAsync(() async {
+        final image = await boundary.toImage(pixelRatio: kDpr);
+        final png = await image.toByteData(format: ui.ImageByteFormat.png);
+        final file = File('test/renders/$name.png')..createSync(recursive: true);
+        file.writeAsBytesSync(png!.buffer.asUint8List());
+      });
   }
 
   for (final e in screens.entries) {
