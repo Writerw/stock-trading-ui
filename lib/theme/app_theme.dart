@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'kite_text.dart';
 
 class AppTheme {
   // ─── Colors sampled directly from the Kite watchlist screenshot ───
@@ -34,6 +34,7 @@ class AppTheme {
 
   static ThemeData get lightTheme {
     return ThemeData(
+      fontFamily: kFontFamily,
       brightness: Brightness.light,
       primaryColor: blue,
       scaffoldBackgroundColor: background,
@@ -42,7 +43,7 @@ class AppTheme {
       appBarTheme: AppBarTheme(
         backgroundColor: background,
         elevation: 0,
-        titleTextStyle: GoogleFonts.inter(
+        titleTextStyle: inter(
           fontSize: 18,
           fontWeight: FontWeight.w500,
           color: textPrimary,
@@ -50,10 +51,10 @@ class AppTheme {
         iconTheme: const IconThemeData(color: textPrimary),
       ),
       textTheme: TextTheme(
-        bodyLarge: GoogleFonts.inter(fontSize: 16, color: textPrimary),
-        bodyMedium: GoogleFonts.inter(fontSize: 14, color: textPrimary),
-        bodySmall: GoogleFonts.inter(fontSize: 12, color: textSecondary),
-        titleMedium: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w500, color: textPrimary),
+        bodyLarge: inter(fontSize: 16, color: textPrimary),
+        bodyMedium: inter(fontSize: 14, color: textPrimary),
+        bodySmall: inter(fontSize: 12, color: textSecondary),
+        titleMedium: inter(fontSize: 14, fontWeight: FontWeight.w500, color: textPrimary),
       ),
       cardTheme: const CardTheme(
         elevation: 0,

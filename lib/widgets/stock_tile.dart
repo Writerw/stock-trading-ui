@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../theme/kite_text.dart';
 import '../data/dummy_data.dart';
 import '../theme/app_theme.dart';
 
@@ -27,7 +27,7 @@ class StockTile extends StatelessWidget {
                 children: [
                   Text(
                     stock.symbol,
-                    style: GoogleFonts.inter(
+                    style: inter(
                       fontSize: 10.23,
                       fontWeight: FontWeight.w400,
                       color: AppTheme.textPrimary,
@@ -36,7 +36,7 @@ class StockTile extends StatelessWidget {
                   const SizedBox(height: 3.3),
                   Text(
                     stock.exchange,
-                    style: GoogleFonts.inter(
+                    style: inter(
                       fontSize: 6.93,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 0.26,
@@ -52,7 +52,7 @@ class StockTile extends StatelessWidget {
               children: [
                 Text(
                   stock.ltpDisplay,
-                  style: GoogleFonts.inter(
+                  style: inter(
                     fontSize: 10.23,
                     fontWeight: FontWeight.w400,
                     color: priceColor,
@@ -61,7 +61,7 @@ class StockTile extends StatelessWidget {
                 const SizedBox(height: 3.3),
                 Text(
                   stock.changeDisplay,
-                  style: GoogleFonts.inter(
+                  style: inter(
                     fontSize: 8.25,
                     fontWeight: FontWeight.w400,
                     color: AppTheme.textPrimary,

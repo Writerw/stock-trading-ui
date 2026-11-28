@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../theme/kite_text.dart';
 import '../data/orders_data.dart';
 import '../theme/app_theme.dart';
 import '../widgets/kite_app_bar.dart';
@@ -82,7 +82,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
           const SizedBox(width: 5.94),
           Text(
             'Tradebook',
-            style: GoogleFonts.inter(
+            style: inter(
                 fontSize: 10.56, fontWeight: FontWeight.w500, color: AppTheme.blue),
           ),
         ],
@@ -96,7 +96,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
       decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(1.98)),
       child: Text(
         text,
-        style: GoogleFonts.inter(
+        style: inter(
             fontSize: 8.25, fontWeight: FontWeight.w500, color: fg),
       ),
     );
@@ -118,13 +118,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
               ),
               const SizedBox(width: 7.26),
               Text(o.qty,
-                  style: GoogleFonts.inter(
+                  style: inter(
                       fontSize: 9.57, color: AppTheme.textPrimary)),
               const Spacer(),
               const Icon(Icons.access_time, size: 9.9, color: AppTheme.metaGrey),
               const SizedBox(width: 2.64),
               Text(o.time,
-                  style: GoogleFonts.inter(
+                  style: inter(
                       fontSize: 8.91, color: AppTheme.metaGrey)),
               const SizedBox(width: 7.26),
               _chip(o.status, AppTheme.chipGreyBg, AppTheme.textPrimary),
@@ -136,11 +136,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
             children: [
               Expanded(
                 child: Text(o.symbol,
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 10.89, color: AppTheme.textPrimary)),
               ),
               Text(o.price,
-                  style: GoogleFonts.inter(
+                  style: inter(
                       fontSize: 10.89, color: AppTheme.textPrimary)),
             ],
           ),
@@ -154,7 +154,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     Flexible(
                       child: Text(o.tags,
                           overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.inter(
+                          style: inter(
                               fontSize: 8.58, color: AppTheme.metaGrey)),
                     ),
                     if (o.noteIcon != null) ...[
@@ -164,7 +164,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     if (o.noteText != null) ...[
                       const SizedBox(width: 1.98),
                       Text(o.noteText!,
-                          style: GoogleFonts.inter(
+                          style: inter(
                               fontSize: 8.58, color: AppTheme.metaGrey)),
                     ],
                   ],
@@ -174,11 +174,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 TextSpan(children: [
                   TextSpan(
                       text: 'LTP ',
-                      style: GoogleFonts.inter(
+                      style: inter(
                           fontSize: 8.58, color: AppTheme.metaGrey)),
                   TextSpan(
                       text: o.ltp,
-                      style: GoogleFonts.inter(
+                      style: inter(
                           fontSize: 8.58, color: AppTheme.textPrimary)),
                 ]),
               ),

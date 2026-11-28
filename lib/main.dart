@@ -13,7 +13,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  /// initialIndex / portfolioTab let the render tests open any screen directly.
+  final int initialIndex;
+  final int portfolioTab;
+  const MyApp({super.key, this.initialIndex = 0, this.portfolioTab = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -27,20 +30,22 @@ class MyApp extends StatelessWidget {
       title: 'Stock Trading App',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const HomeScreen(),
+      home: HomeScreen(initialIndex: initialIndex, portfolioTab: portfolioTab),
     );
   }
 }
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final int initialIndex;
+  final int portfolioTab;
+  const HomeScreen({super.key, this.initialIndex = 0, this.portfolioTab = 0});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
+  late int _currentIndex = widget.initialIndex;
 
   static const Color _inactiveColor = Color(0xFF424250); // exact grey from the Kite screenshot
 
@@ -69,10 +74,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  final List<Widget> _screens = [
+  late final List<Widget> _screens = [
     const WatchlistScreen(),
     const OrdersScreen(),
-    const PortfolioScreen(),
+    PortfolioScreen(initialTab: widget.portfolioTab),
     const IpoScreen(),
     const AccountScreen(),
   ];

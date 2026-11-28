@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../theme/kite_text.dart';
 import '../data/portfolio_data.dart';
 import '../theme/app_theme.dart';
 import '../widgets/kite_app_bar.dart';
 import '../widgets/kite_tabs.dart';
 
 class PortfolioScreen extends StatefulWidget {
-  const PortfolioScreen({super.key});
+  final int initialTab;
+  const PortfolioScreen({super.key, this.initialTab = 0});
 
   @override
   State<PortfolioScreen> createState() => _PortfolioScreenState();
 }
 
 class _PortfolioScreenState extends State<PortfolioScreen> {
-  int _tab = 0; // 0 = Holdings, 1 = Positions
+  late int _tab = widget.initialTab; // 0 = Holdings, 1 = Positions
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +82,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   }
 
   TextStyle _label() =>
-      GoogleFonts.inter(fontSize: 10.23, color: AppTheme.metaGrey);
+      inter(fontSize: 10.23, color: AppTheme.metaGrey);
 
   // ───────────────────────── HOLDINGS ─────────────────────────
   Widget _holdings() {
@@ -98,7 +99,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                     Text('Invested', style: _label()),
                     const SizedBox(height: 3.96),
                     Text(holdingsInvested,
-                        style: GoogleFonts.inter(
+                        style: inter(
                             fontSize: 15.84, color: AppTheme.textPrimary)),
                   ],
                 ),
@@ -109,7 +110,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                     Text('Current', style: _label()),
                     const SizedBox(height: 3.96),
                     Text(holdingsCurrent,
-                        style: GoogleFonts.inter(
+                        style: inter(
                             fontSize: 15.84, color: AppTheme.textPrimary)),
                   ],
                 ),
@@ -123,7 +124,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                 Text('P&L', style: _label()),
                 const Spacer(),
                 Text(holdingsPnl,
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 13.2, color: AppTheme.green)),
                 const SizedBox(width: 7.92),
                 Container(
@@ -132,7 +133,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                       color: AppTheme.pillGreenBg,
                       borderRadius: BorderRadius.circular(3.96)),
                   child: Text(holdingsPnlPct,
-                      style: GoogleFonts.inter(
+                      style: inter(
                           fontSize: 9.24, color: AppTheme.green)),
                 ),
               ],
@@ -160,15 +161,15 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             child: Row(
               children: [
                 Text("Day's P&L",
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 10.56, color: AppTheme.textPrimary)),
                 const Spacer(),
                 Text(holdingsDayPnl,
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 10.56, color: AppTheme.red)),
                 const SizedBox(width: 10.56),
                 Text(holdingsDayPct,
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 10.56, color: AppTheme.red)),
               ],
             ),
@@ -197,7 +198,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             child: Row(
               children: [
                 Text('Equity',
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 9.9, color: AppTheme.textPrimary)),
                 const SizedBox(width: 1.98),
                 const Icon(Icons.keyboard_arrow_down,
@@ -225,7 +226,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             children: [
               Expanded(child: _qtyAvg(h.qty, h.avg, colorQty: false)),
               Text('${h.pnlPct >= 0 ? '+' : ''}${h.pnlPct.toStringAsFixed(2)}%',
-                  style: GoogleFonts.inter(fontSize: 9.57, color: c)),
+                  style: inter(fontSize: 9.57, color: c)),
             ],
           ),
           const SizedBox(height: 6.6),
@@ -233,11 +234,11 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             children: [
               Expanded(
                 child: Text(h.symbol,
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 10.89, color: AppTheme.textPrimary)),
               ),
               Text(h.pnlAbs,
-                  style: GoogleFonts.inter(fontSize: 10.89, color: c)),
+                  style: inter(fontSize: 10.89, color: c)),
             ],
           ),
           const SizedBox(height: 5.94),
@@ -245,21 +246,21 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             children: [
               Expanded(
                 child: Text('Invested ${h.invested}',
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 8.58, color: AppTheme.metaGrey)),
               ),
               Text.rich(TextSpan(children: [
                 TextSpan(
                     text: 'LTP ',
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 8.58, color: AppTheme.metaGrey)),
                 TextSpan(
                     text: '${h.ltp} ',
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 8.58, color: AppTheme.textPrimary)),
                 TextSpan(
                     text: h.ltpPct,
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 8.58, color: AppTheme.metaGrey)),
               ])),
             ],
@@ -278,7 +279,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             Text('Total P&L', style: _label()),
             const SizedBox(height: 5.28),
             Text(positionsTotalPnl,
-                style: GoogleFonts.inter(fontSize: 17.16, color: AppTheme.red)),
+                style: inter(fontSize: 17.16, color: AppTheme.red)),
           ],
         ),
       ),
@@ -339,11 +340,11 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             children: [
               Expanded(
                 child: Text(p.symbol,
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 10.89, color: AppTheme.textPrimary)),
               ),
               Text(p.pnl,
-                  style: GoogleFonts.inter(fontSize: 10.89, color: c)),
+                  style: inter(fontSize: 10.89, color: c)),
             ],
           ),
           const SizedBox(height: 5.94),
@@ -351,17 +352,17 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             children: [
               Expanded(
                 child: Text(p.exchange,
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 8.58, color: AppTheme.metaGrey)),
               ),
               Text.rich(TextSpan(children: [
                 TextSpan(
                     text: 'LTP ',
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 8.58, color: AppTheme.metaGrey)),
                 TextSpan(
                     text: p.ltp,
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 8.58, color: AppTheme.textPrimary)),
               ])),
             ],
@@ -378,14 +379,14 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         : (qty < 0 ? AppTheme.red : AppTheme.blue);
     return Row(
       children: [
-        Text('Qty. ', style: GoogleFonts.inter(fontSize: 9.57, color: AppTheme.metaGrey)),
-        Text('$qty', style: GoogleFonts.inter(fontSize: 9.57, color: qtyColor)),
+        Text('Qty. ', style: inter(fontSize: 9.57, color: AppTheme.metaGrey)),
+        Text('$qty', style: inter(fontSize: 9.57, color: qtyColor)),
         const SizedBox(width: 5.28),
         if (!colorQty) ...[
-          Text('• ', style: GoogleFonts.inter(fontSize: 9.57, color: AppTheme.metaGrey)),
+          Text('• ', style: inter(fontSize: 9.57, color: AppTheme.metaGrey)),
         ],
-        Text('Avg. ', style: GoogleFonts.inter(fontSize: 9.57, color: AppTheme.metaGrey)),
-        Text(avg, style: GoogleFonts.inter(fontSize: 9.57, color: AppTheme.textPrimary)),
+        Text('Avg. ', style: inter(fontSize: 9.57, color: AppTheme.metaGrey)),
+        Text(avg, style: inter(fontSize: 9.57, color: AppTheme.textPrimary)),
       ],
     );
   }
@@ -415,7 +416,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 6.6, vertical: 3.96),
       decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(1.98)),
       child: Text(text,
-          style: GoogleFonts.inter(
+          style: inter(
               fontSize: 8.25, fontWeight: FontWeight.w500, color: fg)),
     );
   }
@@ -426,7 +427,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         Icon(icon, size: 13.86, color: AppTheme.blue),
         const SizedBox(width: 3.96),
         Text(label,
-            style: GoogleFonts.inter(
+            style: inter(
                 fontSize: 10.23, fontWeight: FontWeight.w500, color: AppTheme.blue)),
       ],
     );

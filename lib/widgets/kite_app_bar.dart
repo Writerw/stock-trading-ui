@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../theme/kite_text.dart';
 import '../theme/app_theme.dart';
 import '../version.dart';
 
@@ -21,7 +21,7 @@ class KiteAppBar extends StatelessWidget {
               title,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.inter(
+              style: inter(
                 fontSize: 16.5,
                 fontWeight: FontWeight.w600,
                 color: AppTheme.textPrimary,
@@ -42,7 +42,7 @@ class KiteAppBar extends StatelessWidget {
                 const SizedBox(width: 3.96),
                 Text(
                   'Exit demo $kBuildVersion',
-                  style: GoogleFonts.inter(
+                  style: inter(
                     fontSize: 9.24,
                     fontWeight: FontWeight.w500,
                     color: AppTheme.textPrimary,

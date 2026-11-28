@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../theme/kite_text.dart';
 import '../data/dummy_data.dart';
 import '../theme/app_theme.dart';
 import '../widgets/kite_app_bar.dart';
@@ -102,13 +102,13 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
               Expanded(
                 child: Text(
                   'Search & add',
-                  style: GoogleFonts.inter(
+                  style: inter(
                       fontSize: 10.23, color: AppTheme.searchHint),
                 ),
               ),
               Text(
                 '25/250',
-                style: GoogleFonts.inter(
+                style: inter(
                     fontSize: 9.57, color: AppTheme.searchHint),
               ),
               const SizedBox(width: 7.92),
@@ -141,7 +141,7 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
           const SizedBox(width: 2.64),
           Text(
             'New group',
-            style: GoogleFonts.inter(
+            style: inter(
                 fontSize: 10.56, fontWeight: FontWeight.w500, color: AppTheme.blue),
           ),
         ],
@@ -165,14 +165,14 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
                   children: [
                     Text(
                       'Default ',
-                      style: GoogleFonts.inter(
+                      style: inter(
                           fontSize: 9.9,
                           fontWeight: FontWeight.w600,
                           color: AppTheme.textPrimary),
                     ),
                     Text(
                       '(25)',
-                      style: GoogleFonts.inter(
+                      style: inter(
                           fontSize: 9.9,
                           fontWeight: FontWeight.w500,
                           color: AppTheme.textSecondary),

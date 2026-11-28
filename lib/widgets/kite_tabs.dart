@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../theme/kite_text.dart';
 import '../theme/app_theme.dart';
 
 class KiteTab {
@@ -78,7 +78,7 @@ class KiteTabs extends StatelessWidget {
                     children: [
                       Text(
                         t.label,
-                        style: GoogleFonts.inter(
+                        style: inter(
                           fontSize: 9.9,
                           fontWeight: sel ? FontWeight.w500 : FontWeight.w400,
                           color: sel ? AppTheme.blue : AppTheme.textPrimary,
@@ -119,7 +119,7 @@ class KiteTabs extends StatelessWidget {
       ),
       child: Text(
         '$n',
-        style: GoogleFonts.inter(
+        style: inter(
           fontSize: 7.59,
           fontWeight: FontWeight.w500,
           color: Colors.white,

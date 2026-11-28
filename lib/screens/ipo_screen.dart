@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../theme/kite_text.dart';
 import '../data/ipo_data.dart';
 import '../theme/app_theme.dart';
 import '../widgets/kite_app_bar.dart';
@@ -103,7 +103,7 @@ class _IpoScreenState extends State<IpoScreen> {
         ),
         child: Text(
           label,
-          style: GoogleFonts.inter(
+          style: inter(
             fontSize: 10.23,
             fontWeight: sel ? FontWeight.w500 : FontWeight.w400,
             color: sel ? AppTheme.blue : AppTheme.textPrimary,
@@ -121,20 +121,20 @@ class _IpoScreenState extends State<IpoScreen> {
         children: [
           Text(
             ipo.company,
-            style: GoogleFonts.inter(fontSize: 9.57, color: AppTheme.metaGrey),
+            style: inter(fontSize: 9.57, color: AppTheme.metaGrey),
           ),
           const SizedBox(height: 6.6),
           Row(
             children: [
               Text(
                 ipo.symbol,
-                style: GoogleFonts.inter(fontSize: 11.22, color: AppTheme.textPrimary),
+                style: inter(fontSize: 11.22, color: AppTheme.textPrimary),
               ),
               if (ipo.sme) ...[
                 const SizedBox(width: 6.6),
                 Text(
                   'SME',
-                  style: GoogleFonts.inter(
+                  style: inter(
                       fontSize: 8.25,
                       fontWeight: FontWeight.w500,
                       color: AppTheme.blue),
@@ -148,7 +148,7 @@ class _IpoScreenState extends State<IpoScreen> {
                       color: AppTheme.blue, borderRadius: BorderRadius.circular(2.64)),
                   child: Text(
                     'Apply',
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 10.23,
                         fontWeight: FontWeight.w500,
                         color: Colors.white),
@@ -162,7 +162,7 @@ class _IpoScreenState extends State<IpoScreen> {
                       borderRadius: BorderRadius.circular(2.64)),
                   child: Text(
                     'CLOSED',
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 8.91,
                         fontWeight: FontWeight.w500,
                         color: AppTheme.textPrimary),
@@ -176,12 +176,12 @@ class _IpoScreenState extends State<IpoScreen> {
               Expanded(
                 child: Text(
                   ipo.priceBand,
-                  style: GoogleFonts.inter(fontSize: 9.9, color: AppTheme.textPrimary),
+                  style: inter(fontSize: 9.9, color: AppTheme.textPrimary),
                 ),
               ),
               Text(
                 ipo.dates,
-                style: GoogleFonts.inter(fontSize: 9.9, color: AppTheme.textPrimary),
+                style: inter(fontSize: 9.9, color: AppTheme.textPrimary),
               ),
             ],
           ),
@@ -197,7 +197,7 @@ class _IpoScreenState extends State<IpoScreen> {
         children: [
           Text(
             'View upcoming IPOs',
-            style: GoogleFonts.inter(
+            style: inter(
                 fontSize: 10.89, fontWeight: FontWeight.w500, color: AppTheme.blue),
           ),
           const SizedBox(width: 6.6),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../theme/kite_text.dart';
 import '../theme/app_theme.dart';
 import '../widgets/kite_app_bar.dart';
 
@@ -23,7 +23,7 @@ class AccountScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Demo User',
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 13.2, color: AppTheme.textSecondary),
                   ),
                   const Spacer(),
@@ -57,7 +57,7 @@ class AccountScreen extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(10.56, 5.28, 10.56, 9.24),
                     child: Text(
                       'Account',
-                      style: GoogleFonts.inter(
+                      style: inter(
                           fontSize: 11.22,
                           fontWeight: FontWeight.w600,
                           color: AppTheme.textPrimary),
@@ -101,13 +101,13 @@ class AccountScreen extends StatelessWidget {
                       children: [
                         Text(
                           'DEMOUSER',
-                          style: GoogleFonts.inter(
+                          style: inter(
                               fontSize: 17.16, color: AppTheme.textPrimary),
                         ),
                         const SizedBox(height: 5.28),
                         Text(
                           'demo@zerodha.com',
-                          style: GoogleFonts.inter(
+                          style: inter(
                               fontSize: 9.9, color: AppTheme.metaGrey),
                         ),
                       ],
@@ -121,7 +121,7 @@ class AccountScreen extends StatelessWidget {
                         color: AppTheme.chipBlueBg, shape: BoxShape.circle),
                     child: Text(
                       'DU',
-                      style: GoogleFonts.inter(
+                      style: inter(
                           fontSize: 19.8,
                           fontWeight: FontWeight.w500,
                           color: AppTheme.avatarText),
@@ -137,7 +137,7 @@ class AccountScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Privacy mode',
-                    style: GoogleFonts.inter(
+                    style: inter(
                         fontSize: 11.22,
                         fontWeight: FontWeight.w500,
                         color: AppTheme.textPrimary),
@@ -188,7 +188,7 @@ class AccountScreen extends StatelessWidget {
               Expanded(
                 child: Text(
                   label,
-                  style: GoogleFonts.inter(
+                  style: inter(
                       fontSize: 11.22, color: AppTheme.textPrimary),
                 ),
               ),
