@@ -1,0 +1,17 @@
+
+✅ render watchlist
+✅ render orders
+✅ render holdings
+✅ render positions
+✅ render ipo
+✅ render account
+✅ calibrate watchlist @0.8
+✅ calibrate holdings @0.8
+✅ calibrate watchlist @0.85
+✅ calibrate holdings @0.85
+✅ calibrate watchlist @0.9
+✅ calibrate holdings @0.9
+✅ calibrate watchlist @1.0
+✅ calibrate holdings @1.0
+
+🎉 14 tests passed.
